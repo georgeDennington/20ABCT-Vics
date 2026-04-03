@@ -892,7 +892,7 @@ class cfgWeapons
 	};
 	class UK3CB_BAF_CannonM621: gatling_20mm
 	{
-		class manual: MGun
+		class manual
 		{
 			class StandardSound
 			{
