@@ -2,5 +2,18 @@ name = "20ABCT"
 prefix = "20ABCT"
 author = "Keown"
 
+mainprefix = "z"
+
 [version]
 git_hash = 0
+
+
+[hemtt.launch.default]
+workshop = [
+    "3365663203",
+    "2094487581",
+    "1755268799",
+    "893349825"
+]
+
+mission = "20abct.Stratis"

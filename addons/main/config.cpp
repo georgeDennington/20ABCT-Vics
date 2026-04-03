@@ -3239,7 +3239,7 @@ class CfgVehicles
 				};
 			};
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -3276,7 +3276,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.017857144;
@@ -4657,7 +4657,7 @@ class CfgVehicles
 		class TransportWeapons
 		{
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -4694,7 +4694,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.017857144;
@@ -5368,7 +5368,7 @@ class CfgVehicles
 		class TransportWeapons
 		{
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -5405,7 +5405,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.017857144;
@@ -9466,7 +9466,7 @@ class CfgVehicles
 				};
 			};
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -9500,7 +9500,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.02;
@@ -10087,7 +10087,7 @@ class CfgVehicles
 		class TransportWeapons
 		{
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -10121,7 +10121,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.02;
@@ -10708,7 +10708,7 @@ class CfgVehicles
 		class TransportWeapons
 		{
 		};
-		class ViewOptics: viewOptics
+		class ViewOptics: ViewOptics
 		{
 			visionMode[]=
 			{
@@ -10742,7 +10742,7 @@ class CfgVehicles
 							"SmokeLauncherMag",
 							"SmokeLauncherMag"
 						};
-						class ViewOptics: viewOptics
+						class ViewOptics: ViewOptics
 						{
 							initFov=0.25;
 							minFov=0.02;
