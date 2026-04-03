@@ -24,6 +24,14 @@ class CfgPatches
 	};
 };
 
+class Extended_PreInit_EventHandlers
+{
+	class 20ABCT_cvrt
+	{
+		init="call compile preprocessFileLineNumbers '\z\20abct\addons\cvrt\XEH_preInit.sqf'";
+	};
+};
+
 class RCWSOptics;
 class Optics_Armored;
 class Optics_Gunner_MBT_03: Optics_Armored
@@ -259,21 +267,6 @@ class CfgVehicles
 		};
 		class TransportMagazines
 		{
-			class _xx_20ABCT_APDS_mag
-			{
-				magazine="20ABCT_APDS_mag";
-				count=33;
-			};
-			class _xx_20ABCT_HEIT_mag
-			{
-				magazine="20ABCT_HEIT_mag";
-				count=22;
-			};
-			class _xx_20ABCT_COAX1_mag
-			{
-				magazine="20ABCT_COAX1_mag";
-				count=5;
-			};
 			class _xx_SmokeShellRed
 			{
 				magazine="SmokeShellRed";
@@ -292,49 +285,64 @@ class CfgVehicles
 		};
 		class TransportItems
 		{
+			class _xx_20ABCT_Item_APDS_Clip
+			{
+				name="20ABCT_Item_APDS_Clip";
+				count=33;
+			};
+			class _xx_20ABCT_Item_HEIT_Clip
+			{
+				name="20ABCT_Item_HEIT_Clip";
+				count=22;
+			};
+			class _xx_20ABCT_Item_COAX_600
+			{
+				name="20ABCT_Item_COAX_600";
+				count=5;
+			};
 			class _xx_GME_IFAK
 			{
-				Name="GME_IFAK";
+				name="GME_IFAK";
 				count=2;
 			};
 			class _xx_ACE_EarPlugs
 			{
-				Name="ACE_EarPlugs";
+				name="ACE_EarPlugs";
 				count=3;
 			};
 			class _xx_ToolKit
 			{
-				Name="ToolKit";
+				name="ToolKit";
 				count=1;
 			};
 			class _xx_ACE_EntrenchingTool
 			{
-				Name="ACE_EntrenchingTool";
+				name="ACE_EntrenchingTool";
 				count=2;
 			};
 			class _xx_ACE_ACE_Fortify
 			{
-				Name="ACE_ACE_Fortify";
+				name="ACE_ACE_Fortify";
 				count=2;
 			};
 			class _xx_ACE_wirecutter
 			{
-				Name="ACE_wirecutter";
+				name="ACE_wirecutter";
 				count=1;
 			};
 			class _xx_ACE_Canteen
 			{
-				Name="ACE_Canteen";
+				name="ACE_Canteen";
 				count=3;
 			};
 			class _xx_ACE_Humanitarian_Ration
 			{
-				Name="ACE_Humanitarian_Ration";
+				name="ACE_Humanitarian_Ration";
 				count=3;
 			};
 			class _xx_ACE_Clacker
 			{
-				Name="ACE_Clacker";
+				name="ACE_Clacker";
 				count=1;
 			};
 		};
@@ -612,11 +620,11 @@ class CfgVehicles
 		};
 		class ACE_SelfActions: ACE_SelfActions
 		{
-			class LoaderActions
+			class LoadRARDEN
 			{
-				icon="a3\ui_f\data\GUI\Rsc\RscDisplayArsenal\cargoMagAll_ca.paa";
-				displayName="Load RARDEN/COAX";
-				condition="";
+				icon="\20ABCT\data\UI\RARDEN.paa";
+				displayName="Load RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -625,83 +633,123 @@ class CfgVehicles
 				class APDSLoad
 				{
 					displayName="Load SABOT";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_APDS_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_APDS'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_APDS']; vehicle player addMagazineCargoGlobal ['20ABCT_APDS_mag', -1]";
+					condition="call {private _n = ({_x == '20ABCT_Item_APDS_Clip'} count (items player)) + (((getItemCargo (vehicle player)) select 0) select {_x == '20ABCT_Item_APDS_Clip'} select {true} apply {1} call {params [['_c',0]]; _c}); _n > 0}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="if ('20ABCT_Item_APDS_Clip' in items player) then {player removeItem '20ABCT_Item_APDS_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_APDS_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_APDS']";
 					exceptions[]={};
 					priority=3;
 				};
 				class HELoad
 				{
 					displayName="Load SHELL";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_HEIT_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_HEIT'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_HEIT']; vehicle player addMagazineCargoGlobal ['20ABCT_HEIT_mag', -1]";
+					condition="'20ABCT_Item_HEIT_Clip' in (items player) || '20ABCT_Item_HEIT_Clip' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="if ('20ABCT_Item_HEIT_Clip' in items player) then {player removeItem '20ABCT_Item_HEIT_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_HEIT_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_HEIT']";
 					exceptions[]={};
 					priority=2;
 				};
+			};
+			class UnloadRARDEN
+			{
+				icon="\20ABCT\data\UI\RARDEN.paa";
+				displayName="Unload RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) > 0";
+				exceptions[]=
+				{
+					"isNotInside",
+					"isNotSitting"
+				};
+				class Unload_Mag1_APDS
+				{
+					displayName="Mag 1: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_APDS'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag1_HEIT
+				{
+					displayName="Mag 1: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag2_APDS
+				{
+					displayName="Mag 2: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_APDS'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					exceptions[]={};
+					priority=1;
+				};
+				class Unload_Mag2_HEIT
+				{
+					displayName="Mag 2: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					exceptions[]={};
+					priority=1;
+				};
+			};
+			class LoadCOAX
+			{
+				icon="\20ABCT\data\UI\COAX.paa";
+				displayName="Load COAX";
+				condition="player == (vehicle player) turretUnit [0,0]";
+				exceptions[]=
+				{
+					"isNotInside",
+					"isNotSitting"
+				};
 				class CoaxLoad
 				{
-					displayName="Reload COAX (400 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_400Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX_mag', -1]";
+					displayName="COAX Belt (400 rds)";
+					condition="'20ABCT_Item_COAX_400' in (items player) || '20ABCT_Item_COAX_400' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_400' in items player) then {player removeItem '20ABCT_Item_COAX_400'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_400',-1]}; (vehicle player) addMagazineTurret ['20ABCT_400Rnd_762x51_Red',[0]]";
 					exceptions[]={};
 					priority=1;
 				};
 				class CoaxLoad1
 				{
-					displayName="Reload COAX (600 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX1_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_600Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX1_mag', -1]";
+					displayName="COAX Belt (600 rds)";
+					condition="'20ABCT_Item_COAX_600' in (items player) || '20ABCT_Item_COAX_600' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_600' in items player) then {player removeItem '20ABCT_Item_COAX_600'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_600',-1]}; (vehicle player) addMagazineTurret ['20ABCT_600Rnd_762x51_Red',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad2
 				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd', -1]";
+					displayName="GPMG Belt (100 rds)";
+					condition="'20ABCT_Item_GPMG_100' in (items player) || '20ABCT_Item_GPMG_100' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_GPMG_100' in items player) then {player removeItem '20ABCT_Item_GPMG_100'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_100',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX2_mag',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad3
 				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd_T', -1]";
+					displayName="GPMG Belt (200 rds)";
+					condition="'20ABCT_Item_GPMG_200' in (items player) || '20ABCT_Item_GPMG_200' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_GPMG_200' in items player) then {player removeItem '20ABCT_Item_GPMG_200'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_200',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX3_mag',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad4
 				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd', -1]";
+					displayName="COAX Belt (800 rds)";
+					condition="'20ABCT_Item_COAX_800' in (items player) || '20ABCT_Item_COAX_800' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_800' in items player) then {player removeItem '20ABCT_Item_COAX_800'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_800',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX4_mag',[0]]";
 					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad5
-				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd_T', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad6
-				{
-					displayName="Reload COAX (800 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_800Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX4_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_800Rnd', -1]";
-					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 			};
 			class 20ABCT_ACE_Flag
@@ -970,21 +1018,6 @@ class CfgVehicles
 		};
 		class TransportMagazines
 		{
-			class _xx_20ABCT_APDS_mag
-			{
-				magazine="20ABCT_APDS_mag";
-				count=35;
-			};
-			class _xx_20ABCT_HEIT_mag
-			{
-				magazine="20ABCT_HEIT_mag";
-				count=32;
-			};
-			class _xx_20ABCT_COAX1_mag
-			{
-				magazine="20ABCT_COAX1_mag";
-				count=5;
-			};
 			class _xx_SmokeShellRed
 			{
 				magazine="SmokeShellRed";
@@ -1003,49 +1036,64 @@ class CfgVehicles
 		};
 		class TransportItems
 		{
+			class _xx_20ABCT_Item_APDS_Clip
+			{
+				name="20ABCT_Item_APDS_Clip";
+				count=35;
+			};
+			class _xx_20ABCT_Item_HEIT_Clip
+			{
+				name="20ABCT_Item_HEIT_Clip";
+				count=32;
+			};
+			class _xx_20ABCT_Item_COAX_600
+			{
+				name="20ABCT_Item_COAX_600";
+				count=5;
+			};
 			class _xx_GME_IFAK
 			{
-				Name="GME_IFAK";
+				name="GME_IFAK";
 				count=2;
 			};
 			class _xx_ACE_EarPlugs
 			{
-				Name="ACE_EarPlugs";
+				name="ACE_EarPlugs";
 				count=3;
 			};
 			class _xx_ToolKit
 			{
-				Name="ToolKit";
+				name="ToolKit";
 				count=1;
 			};
 			class _xx_ACE_EntrenchingTool
 			{
-				Name="ACE_EntrenchingTool";
+				name="ACE_EntrenchingTool";
 				count=2;
 			};
 			class _xx_ACE_ACE_Fortify
 			{
-				Name="ACE_ACE_Fortify";
+				name="ACE_ACE_Fortify";
 				count=2;
 			};
 			class _xx_ACE_wirecutter
 			{
-				Name="ACE_wirecutter";
+				name="ACE_wirecutter";
 				count=1;
 			};
 			class _xx_ACE_Canteen
 			{
-				Name="ACE_Canteen";
+				name="ACE_Canteen";
 				count=3;
 			};
 			class _xx_ACE_Humanitarian_Ration
 			{
-				Name="ACE_Humanitarian_Ration";
+				name="ACE_Humanitarian_Ration";
 				count=3;
 			};
 			class _xx_ACE_Clacker
 			{
-				Name="ACE_Clacker";
+				name="ACE_Clacker";
 				count=1;
 			};
 		};
@@ -1323,11 +1371,11 @@ class CfgVehicles
 		};
 		class ACE_SelfActions: ACE_SelfActions
 		{
-			class LoaderActions
+			class LoadRARDEN
 			{
-				icon="a3\ui_f\data\GUI\Rsc\RscDisplayArsenal\cargoMagAll_ca.paa";
-				displayName="Load RARDEN/COAX";
-				condition="";
+				icon="\20ABCT\data\UI\RARDEN.paa";
+				displayName="Load RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -1336,83 +1384,123 @@ class CfgVehicles
 				class APDSLoad
 				{
 					displayName="Load SABOT";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_APDS_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_APDS'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_APDS']; vehicle player addMagazineCargoGlobal ['20ABCT_APDS_mag', -1]";
+					condition="call {private _n = ({_x == '20ABCT_Item_APDS_Clip'} count (items player)) + (((getItemCargo (vehicle player)) select 0) select {_x == '20ABCT_Item_APDS_Clip'} select {true} apply {1} call {params [['_c',0]]; _c}); _n > 0}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="if ('20ABCT_Item_APDS_Clip' in items player) then {player removeItem '20ABCT_Item_APDS_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_APDS_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_APDS']";
 					exceptions[]={};
 					priority=3;
 				};
 				class HELoad
 				{
 					displayName="Load SHELL";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_HEIT_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_HEIT'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_HEIT']; vehicle player addMagazineCargoGlobal ['20ABCT_HEIT_mag', -1]";
+					condition="'20ABCT_Item_HEIT_Clip' in (items player) || '20ABCT_Item_HEIT_Clip' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="if ('20ABCT_Item_HEIT_Clip' in items player) then {player removeItem '20ABCT_Item_HEIT_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_HEIT_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_HEIT']";
 					exceptions[]={};
 					priority=2;
 				};
+			};
+			class UnloadRARDEN
+			{
+				icon="\20ABCT\data\UI\RARDEN.paa";
+				displayName="Unload RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) > 0";
+				exceptions[]=
+				{
+					"isNotInside",
+					"isNotSitting"
+				};
+				class Unload_Mag1_APDS
+				{
+					displayName="Mag 1: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_APDS'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag1_HEIT
+				{
+					displayName="Mag 1: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag2_APDS
+				{
+					displayName="Mag 2: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_APDS'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					exceptions[]={};
+					priority=1;
+				};
+				class Unload_Mag2_HEIT
+				{
+					displayName="Mag 2: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					icon="\20ABCT\data\UI\RARDEN.paa";
+					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					exceptions[]={};
+					priority=1;
+				};
+			};
+			class LoadCOAX
+			{
+				icon="\20ABCT\data\UI\COAX.paa";
+				displayName="Load COAX";
+				condition="player == (vehicle player) turretUnit [0,0]";
+				exceptions[]=
+				{
+					"isNotInside",
+					"isNotSitting"
+				};
 				class CoaxLoad
 				{
-					displayName="Reload COAX (400 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_400Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX_mag', -1]";
+					displayName="COAX Belt (400 rds)";
+					condition="'20ABCT_Item_COAX_400' in (items player) || '20ABCT_Item_COAX_400' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_400' in items player) then {player removeItem '20ABCT_Item_COAX_400'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_400',-1]}; (vehicle player) addMagazineTurret ['20ABCT_400Rnd_762x51_Red',[0]]";
 					exceptions[]={};
 					priority=1;
 				};
 				class CoaxLoad1
 				{
-					displayName="Reload COAX (600 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX1_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_600Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX1_mag', -1]";
+					displayName="COAX Belt (600 rds)";
+					condition="'20ABCT_Item_COAX_600' in (items player) || '20ABCT_Item_COAX_600' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_600' in items player) then {player removeItem '20ABCT_Item_COAX_600'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_600',-1]}; (vehicle player) addMagazineTurret ['20ABCT_600Rnd_762x51_Red',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad2
 				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd', -1]";
+					displayName="GPMG Belt (100 rds)";
+					condition="'20ABCT_Item_GPMG_100' in (items player) || '20ABCT_Item_GPMG_100' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_GPMG_100' in items player) then {player removeItem '20ABCT_Item_GPMG_100'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_100',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX2_mag',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad3
 				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd_T', -1]";
+					displayName="GPMG Belt (200 rds)";
+					condition="'20ABCT_Item_GPMG_200' in (items player) || '20ABCT_Item_GPMG_200' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_GPMG_200' in items player) then {player removeItem '20ABCT_Item_GPMG_200'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_200',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX3_mag',[0]]";
 					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 				class CoaxLoad4
 				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd', -1]";
+					displayName="COAX Belt (800 rds)";
+					condition="'20ABCT_Item_COAX_800' in (items player) || '20ABCT_Item_COAX_800' in ((getItemCargo (vehicle player)) select 0)";
+					icon="\20ABCT\data\UI\COAX.paa";
+					statement="if ('20ABCT_Item_COAX_800' in items player) then {player removeItem '20ABCT_Item_COAX_800'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_800',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX4_mag',[0]]";
 					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad5
-				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd_T', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad6
-				{
-					displayName="Reload COAX (800 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_800Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX4_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_800Rnd', -1]";
-					exceptions[]={};
-					priority=3;
+					priority=1;
 				};
 			};
 			class 20ABCT_ACE_Flag

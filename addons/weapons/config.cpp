@@ -17,7 +17,14 @@ class CfgPatches
             "20ABCT_UK3CB_BAF_L85A3_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDSUK3CB_underbarrel_acc_afg_d",
             "20ABCT_UK3CB_BAF_L85A3_UGL_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDS",
             "20ABCT_UK3CB_BAF_L85A3_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDSUK3CB_underbarrel_acc_grippod_t",
-            "20ABCT_UK3CB_BAF_L129A1_UK3CB_BAF_LLM_IR_TanUK3CB_BAF_TA648_308UK3CB_underbarrel_acc_fgrip_bipod"
+            "20ABCT_UK3CB_BAF_L129A1_UK3CB_BAF_LLM_IR_TanUK3CB_BAF_TA648_308UK3CB_underbarrel_acc_fgrip_bipod",
+            "20ABCT_Item_APDS_Clip",
+            "20ABCT_Item_HEIT_Clip",
+            "20ABCT_Item_COAX_400",
+            "20ABCT_Item_COAX_600",
+            "20ABCT_Item_GPMG_100",
+            "20ABCT_Item_GPMG_200",
+            "20ABCT_Item_COAX_800"
         };
         requiredAddons[]=
         {
@@ -124,7 +131,7 @@ class CfgMagazines
 		initSpeed=1175;
 		count=3;
 		mass=60;
-		deleteIfEmpty=-1;
+		deleteIfEmpty=1;
 	};
 	class 20ABCT_6Rnd_30mm_APDS: 20ABCT_3Rnd_30mm_APDS
 	{
@@ -140,7 +147,7 @@ class CfgMagazines
 		initSpeed=1070;
 		count=3;
 		mass=60;
-		deleteIfEmpty=-1;
+		deleteIfEmpty=1;
 	};
 	class 20ABCT_6Rnd_30mm_HEIT: 20ABCT_3Rnd_30mm_HEIT
 	{
@@ -1245,6 +1252,102 @@ class cfgWeapons
 					"jsrs_2025_tailsystem_762mm_LMG_soundset"
 				};
 			};
+		};
+	};
+	// ============================================================
+	// Magazine Items - carryable inventory items for manual reloads
+	// Maps to weapon magazines via reload scripts
+	// See plan: swift-frolicking-trinket.md for full mapping table
+	// ============================================================
+	class 20ABCT_Item_APDS_Clip: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="L14A3 APDS-T Clip";
+		descriptionShort="30x170mm APDS-T clip for RARDEN L21A2. 3 rounds.";
+		picture="\20ABCT\data\UI\RARDEN.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=40;
+		};
+	};
+	class 20ABCT_Item_HEIT_Clip: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="L13A2 HEI-T Clip";
+		descriptionShort="30x170mm HEI-T clip for RARDEN L21A2. 3 rounds.";
+		picture="\20ABCT\data\UI\RARDEN.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=40;
+		};
+	};
+	class 20ABCT_Item_COAX_400: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="COAX Belt (400 rds)";
+		descriptionShort="7.62x51mm belt, 400 rounds. For L94A1 chain gun.";
+		picture="\20ABCT\data\UI\COAX.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=130;
+		};
+	};
+	class 20ABCT_Item_COAX_600: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="COAX Belt (600 rds)";
+		descriptionShort="7.62x51mm belt, 600 rounds. For L94A1 chain gun.";
+		picture="\20ABCT\data\UI\COAX.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=194;
+		};
+	};
+	class 20ABCT_Item_GPMG_100: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="GPMG Belt (100 rds)";
+		descriptionShort="7.62x51mm belt, 100 rounds. For L37A1 GPMG.";
+		picture="\20ABCT\data\UI\COAX.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=33;
+		};
+	};
+	class 20ABCT_Item_GPMG_200: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="GPMG Belt (200 rds)";
+		descriptionShort="7.62x51mm belt, 200 rounds. For L37A1 GPMG.";
+		picture="\20ABCT\data\UI\COAX.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=65;
+		};
+	};
+	class 20ABCT_Item_COAX_800: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="COAX Belt (800 rds)";
+		descriptionShort="7.62x51mm belt, 800 rounds. For L94A1 chain gun.";
+		picture="\20ABCT\data\UI\COAX.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=259;
 		};
 	};
 };
