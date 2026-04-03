@@ -5,11 +5,15 @@ author = "Keown"
 mainprefix = "z"
 
 [version]
+path = "addons/core/script_version.hpp"
 git_hash = 0
 
 
 [hemtt.launch.default]
 workshop = [
+    "450814997",
+    "463939057",
+    "3407948300",
     "3365663203",
     "2094487581",
     "1755268799",
