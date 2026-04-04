@@ -1386,6 +1386,7 @@ class cfgWeapons
 	{
 		scope=2;
 		scopeCurator=2;
+		ace_arsenal_hide=0;
 		displayName="L27 APFSDS Round";
 		descriptionShort="120mm L27 APFSDS-T round for L30A1 rifled gun.";
 		picture="\20ABCT\data\UI\Garage_Icon.paa";
@@ -1399,6 +1400,7 @@ class cfgWeapons
 	{
 		scope=2;
 		scopeCurator=2;
+		ace_arsenal_hide=0;
 		displayName="120mm HESH-T Round";
 		descriptionShort="120mm HESH-T round for L30A1 rifled gun.";
 		picture="\20ABCT\data\UI\Garage_Icon.paa";
@@ -1412,6 +1414,7 @@ class cfgWeapons
 	{
 		scope=2;
 		scopeCurator=2;
+		ace_arsenal_hide=0;
 		displayName="120mm Smoke Round";
 		descriptionShort="120mm smoke round for L30A1 rifled gun.";
 		picture="\20ABCT\data\UI\Garage_Icon.paa";
