@@ -687,7 +687,7 @@ class 20ABCT_CR2 : qav_challenger2
             class LoadHESHT
             {
                 displayName="Load HESH-T";
-                condition="'20ABCT_Item_120mm_HESHT' in (items player) || '20ABCT_Item_120mm_HESHT' in ((getItemCargo (vehicle player)) select 0)";
+                condition="'20ABCT_Item_120mm_HESHT' in (items player) || '20ABCT_Item_120mm_HESHT' in (itemCargo (vehicle player))";
                 statement="if ('20ABCT_Item_120mm_HESHT' in items player) then {player removeItem '20ABCT_Item_120mm_HESHT'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_HESHT',-1]}; (vehicle player) addMagazineTurret ['20ABCT_1Rnd_120mm_HESHT',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_L30A1','20ABCT_1Rnd_120mm_HESHT']";
                 exceptions[]={};
                 priority=2;
@@ -695,7 +695,7 @@ class 20ABCT_CR2 : qav_challenger2
             class LoadSmoke
             {
                 displayName="Load Smoke";
-                condition="'20ABCT_Item_120mm_Smoke' in (items player) || '20ABCT_Item_120mm_Smoke' in ((getItemCargo (vehicle player)) select 0)";
+                condition="'20ABCT_Item_120mm_Smoke' in (items player) || '20ABCT_Item_120mm_Smoke' in (itemCargo (vehicle player))";
                 statement="if ('20ABCT_Item_120mm_Smoke' in items player) then {player removeItem '20ABCT_Item_120mm_Smoke'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_Smoke',-1]}; (vehicle player) addMagazineTurret ['20ABCT_1Rnd_120mm_Smoke',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_L30A1','20ABCT_1Rnd_120mm_Smoke']";
                 exceptions[]={};
                 priority=1;
@@ -714,7 +714,7 @@ class 20ABCT_CR2 : qav_challenger2
             {
                 displayName="Unload APFSDS";
                 condition="'20ABCT_1Rnd_120mm_APFSDS' in ((vehicle player) magazinesTurret [0])";
-                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_APFSDS',[0]]; if ((vehicle player) canAddItemCargo ['20ABCT_Item_120mm_APFSDS',1]) then {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_APFSDS',1]} else {player addItem '20ABCT_Item_120mm_APFSDS'}";
+                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_APFSDS',[0]]; (vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_APFSDS',1]";
                 exceptions[]={};
                 priority=3;
             };
@@ -722,7 +722,7 @@ class 20ABCT_CR2 : qav_challenger2
             {
                 displayName="Unload HESH-T";
                 condition="'20ABCT_1Rnd_120mm_HESHT' in ((vehicle player) magazinesTurret [0])";
-                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_HESHT',[0]]; if ((vehicle player) canAddItemCargo ['20ABCT_Item_120mm_HESHT',1]) then {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_HESHT',1]} else {player addItem '20ABCT_Item_120mm_HESHT'}";
+                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_HESHT',[0]]; (vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_HESHT',1]";
                 exceptions[]={};
                 priority=2;
             };
@@ -730,7 +730,7 @@ class 20ABCT_CR2 : qav_challenger2
             {
                 displayName="Unload Smoke";
                 condition="'20ABCT_1Rnd_120mm_Smoke' in ((vehicle player) magazinesTurret [0])";
-                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_Smoke',[0]]; if ((vehicle player) canAddItemCargo ['20ABCT_Item_120mm_Smoke',1]) then {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_Smoke',1]} else {player addItem '20ABCT_Item_120mm_Smoke'}";
+                statement="(vehicle player) removeMagazineTurret ['20ABCT_1Rnd_120mm_Smoke',[0]]; (vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_Smoke',1]";
                 exceptions[]={};
                 priority=1;
             };
