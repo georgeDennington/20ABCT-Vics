@@ -302,6 +302,37 @@ class CfgMagazines
 		count=3;
 		displayName="VIRSS Reload";
 	};
+	// Challenger 2 - 120mm single-round magazines
+	class qav_35Rnd_120mm_APFSDS_L27_shells;
+	class qav_15Rnd_120mm_HESHT_shells;
+	class qav_5Rnd_120mm_smoke_shells;
+	class 20ABCT_1Rnd_120mm_APFSDS: qav_35Rnd_120mm_APFSDS_L27_shells
+	{
+		displayName="L27 APFSDS Round";
+		displayNameShort="L27 APFSDS";
+		displayNameMFDFormat="APFSDS";
+		count=1;
+		mass=200;
+		deleteIfEmpty=1;
+	};
+	class 20ABCT_1Rnd_120mm_HESHT: qav_15Rnd_120mm_HESHT_shells
+	{
+		displayName="120mm HESH-T Round";
+		displayNameShort="HESH-T";
+		displayNameMFDFormat="HESH";
+		count=1;
+		mass=200;
+		deleteIfEmpty=1;
+	};
+	class 20ABCT_1Rnd_120mm_Smoke: qav_5Rnd_120mm_smoke_shells
+	{
+		displayName="120mm Smoke Round";
+		displayNameShort="Smoke";
+		displayNameMFDFormat="SMOKE";
+		count=1;
+		mass=150;
+		deleteIfEmpty=1;
+	};
 };
 
 class Mode_FullAuto;
@@ -1348,6 +1379,46 @@ class cfgWeapons
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
 			mass=259;
+		};
+	};
+	// Challenger 2 - 120mm shell items
+	class 20ABCT_Item_120mm_APFSDS: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="L27 APFSDS Round";
+		descriptionShort="120mm L27 APFSDS-T round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=200;
+		};
+	};
+	class 20ABCT_Item_120mm_HESHT: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="120mm HESH-T Round";
+		descriptionShort="120mm HESH-T round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=200;
+		};
+	};
+	class 20ABCT_Item_120mm_Smoke: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		displayName="120mm Smoke Round";
+		descriptionShort="120mm smoke round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=150;
 		};
 	};
 };
