@@ -1038,7 +1038,7 @@ class CfgVehicles
 					displayName="Load SABOT";
 					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_APDS_mag' in (getMagazineCargo vehicle player select 0))";
 					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_APDS'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_APDS']; vehicle player addMagazineCargoGlobal ['20ABCT_APDS_mag', -1]";
+					statement="vehicle _player addMagazineGlobal '20ABCT_APDS_mag'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_APDS_mag']; vehicle player addMagazineCargoGlobal ['20ABCT_APDS_mag', -1]";
 					exceptions[]={};
 					priority=1;
 				};
@@ -1047,7 +1047,7 @@ class CfgVehicles
 					displayName="Load SHELL";
 					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_HEIT_mag' in (getMagazineCargo vehicle player select 0))";
 					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_3Rnd_30mm_HEIT'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_3Rnd_30mm_HEIT']; vehicle player addMagazineCargoGlobal ['20ABCT_HEIT_mag', -1]";
+					statement="vehicle _player addMagazineGlobal '20ABCT_HEIT_mag'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_HEIT_mag']; vehicle player addMagazineCargoGlobal ['20ABCT_HEIT_mag', -1]";
 					exceptions[]={};
 					priority=2;
 				};
@@ -2727,47 +2727,47 @@ class CfgVehicles
 				};
 				magazines[]=
 				{
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
 					"20ABCT_400Rnd_762x51_Red",
 					"20ABCT_400Rnd_762x51_Red",
 					"20ABCT_400Rnd_762x51_Red",

@@ -282,19 +282,19 @@ class CfgVehicles
 				magazine="DemoCharge_Remote_Mag";
 				count=1;
 			};
+			class _xx_20ABCT_APDS_mag
+			{
+				magazine="20ABCT_APDS_mag";
+				count=33;
+			};
+			class _xx_20ABCT_HEIT_mag
+			{
+				magazine="20ABCT_HEIT_mag";
+				count=22;
+			};
 		};
 		class TransportItems
 		{
-			class _xx_20ABCT_Item_APDS_Clip
-			{
-				name="20ABCT_Item_APDS_Clip";
-				count=33;
-			};
-			class _xx_20ABCT_Item_HEIT_Clip
-			{
-				name="20ABCT_Item_HEIT_Clip";
-				count=22;
-			};
 			class _xx_20ABCT_Item_COAX_600
 			{
 				name="20ABCT_Item_COAX_600";
@@ -630,7 +630,7 @@ class CfgVehicles
 					"isNotInside",
 					"isNotSitting"
 				};
-				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_3Rnd_30mm_APDS'} count _tMags; private _loadedHEIT = {_x == '20ABCT_3Rnd_30mm_HEIT'} count _tMags; private _cargo = getItemCargo _veh; private _cNames = _cargo select 0; private _cCounts = _cargo select 1; private _fnc = {params ['_n','_item']; private _i = _n find _item; if (_i >= 0) then {_cCounts select _i} else {0}}; private _availAPDS = ({_x == '20ABCT_Item_APDS_Clip'} count items player) + ([_cNames,'20ABCT_Item_APDS_Clip'] call _fnc); private _availHEIT = ({_x == '20ABCT_Item_HEIT_Clip'} count items player) + ([_cNames,'20ABCT_Item_HEIT_Clip'] call _fnc); private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_3Rnd_30mm_APDS') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_3Rnd_30mm_HEIT') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]}";
+				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_APDS_mag'} count _tMags; private _loadedHEIT = {_x == '20ABCT_HEIT_mag'} count _tMags; private _cMags = magazineCargo _veh; private _availAPDS = {_x == '20ABCT_APDS_mag'} count _cMags; private _availHEIT = {_x == '20ABCT_HEIT_mag'} count _cMags; private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_APDS_mag') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_HEIT_mag') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]}";
 				showDisabled=0;
 				priority=10;
 			};
@@ -638,7 +638,7 @@ class CfgVehicles
 			{
 				icon="\20ABCT\data\UI\RARDEN.paa";
 				displayName="Load RARDEN";
-				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) < 2";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -647,18 +647,18 @@ class CfgVehicles
 				class APDSLoad
 				{
 					displayName="Load SABOT";
-					condition="call {private _n = ({_x == '20ABCT_Item_APDS_Clip'} count (items player)) + (((getItemCargo (vehicle player)) select 0) select {_x == '20ABCT_Item_APDS_Clip'} select {true} apply {1} call {params [['_c',0]]; _c}); _n > 0}";
+					condition="'20ABCT_APDS_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="if ('20ABCT_Item_APDS_Clip' in items player) then {player removeItem '20ABCT_Item_APDS_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_APDS_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_APDS']";
+					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_APDS_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_APDS_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_APDS_mag']";
 					exceptions[]={};
 					priority=3;
 				};
 				class HELoad
 				{
 					displayName="Load SHELL";
-					condition="'20ABCT_Item_HEIT_Clip' in (items player) || '20ABCT_Item_HEIT_Clip' in ((getItemCargo (vehicle player)) select 0)";
+					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="if ('20ABCT_Item_HEIT_Clip' in items player) then {player removeItem '20ABCT_Item_HEIT_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_HEIT_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_HEIT']";
+					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_HEIT_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_HEIT_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_HEIT_mag']";
 					exceptions[]={};
 					priority=2;
 				};
@@ -667,7 +667,7 @@ class CfgVehicles
 			{
 				icon="\20ABCT\data\UI\RARDEN.paa";
 				displayName="Unload RARDEN";
-				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) > 0";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) > 0";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -676,36 +676,36 @@ class CfgVehicles
 				class Unload_Mag1_APDS
 				{
 					displayName="Mag 1: SABOT";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_APDS'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
 					exceptions[]={};
 					priority=2;
 				};
 				class Unload_Mag1_HEIT
 				{
 					displayName="Mag 1: SHELL";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
 					exceptions[]={};
 					priority=2;
 				};
 				class Unload_Mag2_APDS
 				{
 					displayName="Mag 2: SABOT";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_APDS'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
 					exceptions[]={};
 					priority=1;
 				};
 				class Unload_Mag2_HEIT
 				{
 					displayName="Mag 2: SHELL";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
 					exceptions[]={};
 					priority=1;
 				};
@@ -1047,19 +1047,19 @@ class CfgVehicles
 				magazine="DemoCharge_Remote_Mag";
 				count=1;
 			};
+			class _xx_20ABCT_APDS_mag
+			{
+				magazine="20ABCT_APDS_mag";
+				count=33;
+			};
+			class _xx_20ABCT_HEIT_mag
+			{
+				magazine="20ABCT_HEIT_mag";
+				count=22;
+			};
 		};
 		class TransportItems
 		{
-			class _xx_20ABCT_Item_APDS_Clip
-			{
-				name="20ABCT_Item_APDS_Clip";
-				count=35;
-			};
-			class _xx_20ABCT_Item_HEIT_Clip
-			{
-				name="20ABCT_Item_HEIT_Clip";
-				count=32;
-			};
 			class _xx_20ABCT_Item_COAX_600
 			{
 				name="20ABCT_Item_COAX_600";
@@ -1395,7 +1395,7 @@ class CfgVehicles
 					"isNotInside",
 					"isNotSitting"
 				};
-				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_3Rnd_30mm_APDS'} count _tMags; private _loadedHEIT = {_x == '20ABCT_3Rnd_30mm_HEIT'} count _tMags; private _cargo = getItemCargo _veh; private _cNames = _cargo select 0; private _cCounts = _cargo select 1; private _fnc = {params ['_n','_item']; private _i = _n find _item; if (_i >= 0) then {_cCounts select _i} else {0}}; private _availAPDS = ({_x == '20ABCT_Item_APDS_Clip'} count items player) + ([_cNames,'20ABCT_Item_APDS_Clip'] call _fnc); private _availHEIT = ({_x == '20ABCT_Item_HEIT_Clip'} count items player) + ([_cNames,'20ABCT_Item_HEIT_Clip'] call _fnc); private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_3Rnd_30mm_APDS') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_3Rnd_30mm_HEIT') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]}";
+				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_APDS_mag'} count _tMags; private _loadedHEIT = {_x == '20ABCT_HEIT_mag'} count _tMags; private _cMags = magazineCargo _veh; private _availAPDS = {_x == '20ABCT_APDS_mag'} count _cMags; private _availHEIT = {_x == '20ABCT_HEIT_mag'} count _cMags; private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_APDS_mag') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_HEIT_mag') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]}";
 				showDisabled=0;
 				priority=10;
 			};
@@ -1403,7 +1403,7 @@ class CfgVehicles
 			{
 				icon="\20ABCT\data\UI\RARDEN.paa";
 				displayName="Load RARDEN";
-				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) < 2";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -1412,18 +1412,18 @@ class CfgVehicles
 				class APDSLoad
 				{
 					displayName="Load SABOT";
-					condition="call {private _n = ({_x == '20ABCT_Item_APDS_Clip'} count (items player)) + (((getItemCargo (vehicle player)) select 0) select {_x == '20ABCT_Item_APDS_Clip'} select {true} apply {1} call {params [['_c',0]]; _c}); _n > 0}";
+					condition="'20ABCT_APDS_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="if ('20ABCT_Item_APDS_Clip' in items player) then {player removeItem '20ABCT_Item_APDS_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_APDS_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_APDS']";
+					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_APDS_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_APDS_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_APDS_mag']";
 					exceptions[]={};
 					priority=3;
 				};
 				class HELoad
 				{
 					displayName="Load SHELL";
-					condition="'20ABCT_Item_HEIT_Clip' in (items player) || '20ABCT_Item_HEIT_Clip' in ((getItemCargo (vehicle player)) select 0)";
+					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="if ('20ABCT_Item_HEIT_Clip' in items player) then {player removeItem '20ABCT_Item_HEIT_Clip'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_HEIT_Clip',-1]}; (vehicle player) addMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_3Rnd_30mm_HEIT']";
+					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_HEIT_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_HEIT_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_HEIT_mag']";
 					exceptions[]={};
 					priority=2;
 				};
@@ -1432,7 +1432,7 @@ class CfgVehicles
 			{
 				icon="\20ABCT\data\UI\RARDEN.paa";
 				displayName="Unload RARDEN";
-				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']} count ((vehicle player) magazinesTurret [0])) > 0";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) > 0";
 				exceptions[]=
 				{
 					"isNotInside",
@@ -1441,36 +1441,36 @@ class CfgVehicles
 				class Unload_Mag1_APDS
 				{
 					displayName="Mag 1: SABOT";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_APDS'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
 					exceptions[]={};
 					priority=2;
 				};
 				class Unload_Mag1_HEIT
 				{
 					displayName="Mag 1: SHELL";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
 					exceptions[]={};
 					priority=2;
 				};
 				class Unload_Mag2_APDS
 				{
 					displayName="Mag 2: SABOT";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_APDS'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_APDS',[0]]; player addItem '20ABCT_Item_APDS_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
 					exceptions[]={};
 					priority=1;
 				};
 				class Unload_Mag2_HEIT
 				{
 					displayName="Mag 2: SHELL";
-					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_3Rnd_30mm_APDS','20ABCT_3Rnd_30mm_HEIT']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_3Rnd_30mm_HEIT'}}";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) removeMagazineTurret ['20ABCT_3Rnd_30mm_HEIT',[0]]; player addItem '20ABCT_Item_HEIT_Clip'";
+					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
 					exceptions[]={};
 					priority=1;
 				};
@@ -2213,39 +2213,39 @@ class CfgVehicles
 				};
 				magazines[]=
 				{
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
 					"20ABCT_600Rnd_762x51_Red",
 					"20ABCT_600Rnd_762x51_Red",
 					"20ABCT_600Rnd_762x51_Red",
@@ -2846,39 +2846,39 @@ class CfgVehicles
 				};
 				magazines[]=
 				{
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_APDS",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
-					"20ABCT_6Rnd_30mm_HEIT",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_APDS_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
+					"20ABCT_HEIT_mag",
 					"20ABCT_600Rnd_762x51_Red",
 					"20ABCT_600Rnd_762x51_Red",
 					"20ABCT_600Rnd_762x51_Red",
