@@ -679,7 +679,7 @@ class 20ABCT_CR2 : qav_challenger2
             class LoadAPFSDS
             {
                 displayName="Load APFSDS";
-                condition="'20ABCT_Item_120mm_APFSDS' in (items player) || '20ABCT_Item_120mm_APFSDS' in ((getItemCargo (vehicle player)) select 0)";
+                condition="'20ABCT_Item_120mm_APFSDS' in (items player) || '20ABCT_Item_120mm_APFSDS' in (itemCargo (vehicle player))";
                 statement="if ('20ABCT_Item_120mm_APFSDS' in items player) then {player removeItem '20ABCT_Item_120mm_APFSDS'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_120mm_APFSDS',-1]}; (vehicle player) addMagazineTurret ['20ABCT_1Rnd_120mm_APFSDS',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_L30A1','20ABCT_1Rnd_120mm_APFSDS']";
                 exceptions[]={};
                 priority=3;
