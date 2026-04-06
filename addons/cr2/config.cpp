@@ -66,6 +66,7 @@ class CfgWeapons
 {
     class 20ABCT_L30A1: qav_challenger_L30A1
     {
+        magazineReloadTime=0.1;
         magazines[]=
         {
             "20ABCT_1Rnd_120mm_APFSDS",
