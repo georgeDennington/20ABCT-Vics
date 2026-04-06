@@ -13,6 +13,7 @@ class CfgPatches
 			"20ABCT_CVRT_ai_w"
 		};
 		weapons[]={};
+		requiredVersion=0.50;
 		requiredAddons[]=
 		{
 			"20ABCT_core",
@@ -630,7 +631,7 @@ class CfgVehicles
 					"isNotInside",
 					"isNotSitting"
 				};
-				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_APDS_mag'} count _tMags; private _loadedHEIT = {_x == '20ABCT_HEIT_mag'} count _tMags; private _cMags = magazineCargo _veh; private _availAPDS = {_x == '20ABCT_APDS_mag'} count _cMags; private _availHEIT = {_x == '20ABCT_HEIT_mag'} count _cMags; private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_APDS_mag') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_HEIT_mag') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]; [{hintSilent ''}, [], 8] call CBA_fnc_waitAndExecute}";
+				statement="execVM '\z\20abct\addons\cvrt\scripts\rardenStatus.sqf'";
 				showDisabled=0;
 				priority=10;
 			};
@@ -649,7 +650,7 @@ class CfgVehicles
 					displayName="Load SABOT";
 					condition="'20ABCT_APDS_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_APDS_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_APDS_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_APDS_mag']";
+					statement="['20ABCT_APDS_mag', 'Loading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=3;
 				};
@@ -658,7 +659,7 @@ class CfgVehicles
 					displayName="Load SHELL";
 					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_HEIT_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_HEIT_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_HEIT_mag']";
+					statement="['20ABCT_HEIT_mag', 'Loading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -678,7 +679,7 @@ class CfgVehicles
 					displayName="Mag 1: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
+					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -687,7 +688,7 @@ class CfgVehicles
 					displayName="Mag 1: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
+					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -696,7 +697,7 @@ class CfgVehicles
 					displayName="Mag 2: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
+					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
 				};
@@ -705,7 +706,7 @@ class CfgVehicles
 					displayName="Mag 2: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
+					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
 				};
@@ -1395,7 +1396,7 @@ class CfgVehicles
 					"isNotInside",
 					"isNotSitting"
 				};
-				statement="call {private _veh = vehicle player; private _tMags = _veh magazinesTurret [0]; private _loadedAPDS = {_x == '20ABCT_APDS_mag'} count _tMags; private _loadedHEIT = {_x == '20ABCT_HEIT_mag'} count _tMags; private _cMags = magazineCargo _veh; private _availAPDS = {_x == '20ABCT_APDS_mag'} count _cMags; private _availHEIT = {_x == '20ABCT_HEIT_mag'} count _cMags; private _lines = []; {_x params ['_m','_t','_a']; if (_m == '20ABCT_APDS_mag') then {_lines pushBack format ['  SABOT: %1/3 rds', _a]}; if (_m == '20ABCT_HEIT_mag') then {_lines pushBack format ['  SHELL: %1/3 rds', _a]}} forEach magazinesAllTurrets _veh; hint parseText format ['<t size=''1.1'' font=''PuristaBold''>RARDEN L21A2</t><br/><br/><t font=''PuristaMedium''>LOADED (%1/2):</t><br/>%2<br/><br/><t font=''PuristaMedium''>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4', _loadedAPDS + _loadedHEIT, if (count _lines == 0) then {'  Empty'} else {_lines joinString '<br/>'}, _availAPDS, _availHEIT]; [{hintSilent ''}, [], 8] call CBA_fnc_waitAndExecute}";
+				statement="execVM '\z\20abct\addons\cvrt\scripts\rardenStatus.sqf'";
 				showDisabled=0;
 				priority=10;
 			};
@@ -1414,7 +1415,7 @@ class CfgVehicles
 					displayName="Load SABOT";
 					condition="'20ABCT_APDS_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_APDS_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_APDS_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_APDS_mag']";
+					statement="['20ABCT_APDS_mag', 'Loading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=3;
 				};
@@ -1423,7 +1424,7 @@ class CfgVehicles
 					displayName="Load SHELL";
 					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="(vehicle player) addMagazineCargoGlobal ['20ABCT_HEIT_mag',-1]; (vehicle player) addMagazineTurret ['20ABCT_HEIT_mag',[0]]; (vehicle player) loadMagazine [[0],'20ABCT_30mm_L21A2','20ABCT_HEIT_mag']";
+					statement="['20ABCT_HEIT_mag', 'Loading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -1443,7 +1444,7 @@ class CfgVehicles
 					displayName="Mag 1: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
+					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -1452,7 +1453,7 @@ class CfgVehicles
 					displayName="Mag 1: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
+					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
@@ -1461,7 +1462,7 @@ class CfgVehicles
 					displayName="Mag 2: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_APDS_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_APDS_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_APDS_mag',1,_a]}";
+					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
 				};
@@ -1470,7 +1471,7 @@ class CfgVehicles
 					displayName="Mag 2: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
 					icon="\20ABCT\data\UI\RARDEN.paa";
-					statement="call {private _veh = vehicle player; private _a = 0; {_x params ['_m','_t','_c']; if (_m == '20ABCT_HEIT_mag') exitWith {_a = _c}} forEach magazinesAllTurrets _veh; _veh removeMagazineTurret ['20ABCT_HEIT_mag',[0]]; _veh addMagazineAmmoCargo ['20ABCT_HEIT_mag',1,_a]}";
+					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
 				};

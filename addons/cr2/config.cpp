@@ -12,7 +12,7 @@ class CfgPatches
             "20ABCT_L30A1",
             "20ABCT_762_L94A1"
         };
-        requiredVersion = 1;
+        requiredVersion=0.50;
         requiredAddons[]=
         {
             "20ABCT_core",
