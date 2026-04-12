@@ -445,6 +445,7 @@ class cfgWeapons
 		class HE: HE
 		{
 			autoReload=1;
+			backgroundReload=1;
 			ballisticsComputer=2;
 			displayName="L21A2 RARDEN";
 			dispersion=0.00029;
@@ -570,6 +571,7 @@ class cfgWeapons
 			20
 		};
 		autoReload=1;
+		backgroundReload=1;
 		class manual: manual
 		{
 			reloadTime=0.10909091;
@@ -593,7 +595,8 @@ class cfgWeapons
 	};
 	class 20ABCT_762_L94A1_CR2: 20ABCT_762_L94A1
 	{
-		autoReload=0;
+		autoReload=1;
+		backgroundReload=1;
 		ballisticsComputer=16;
 	};
 	class 20ABCT_762_L37A1: LMG_coax
@@ -620,6 +623,7 @@ class cfgWeapons
 			40
 		};
 		autoReload=1;
+		backgroundReload=1;
 		class manual: manual
 		{
 			reloadTime=0.059999999;
