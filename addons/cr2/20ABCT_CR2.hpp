@@ -17,7 +17,24 @@ class 20ABCT_CR2 : qav_challenger2
     maximumLoad=8000;
     class TransportWeapons {};
     class TransportMagazines {};
-    class TransportItems {};
+    class TransportItems
+    {
+        class _xx_20ABCT_Item_120mm_APFSDS
+        {
+            name="20ABCT_Item_120mm_APFSDS";
+            count=35;
+        };
+        class _xx_20ABCT_Item_120mm_HESHT
+        {
+            name="20ABCT_Item_120mm_HESHT";
+            count=15;
+        };
+        class _xx_20ABCT_Item_120mm_Smoke
+        {
+            name="20ABCT_Item_120mm_Smoke";
+            count=5;
+        };
+    };
     class TransportBackpacks {};
     ace_refuel_fuelCapacity=1600;
     ace_vehicles_engineStartDelay=3;
@@ -142,7 +159,6 @@ class 20ABCT_CR2 : qav_challenger2
                     minTurn=-135;
                     maxTurn=90;
                     initTurn=0;
-					startEngine="false";
                     weapons[]=
                     {
 						"Laserdesignator_mounted",
@@ -326,14 +342,11 @@ class 20ABCT_CR2 : qav_challenger2
             weapons[]=
             {
 				"20ABCT_safe",
-                "qav_challenger_L30A1",
+                "20ABCT_L30A1",
                 "20ABCT_762_L94A1_CR2"
             };
             magazines[]=
             {
-                "qav_35Rnd_120mm_APFSDS_L27_shells",
-				"qav_15Rnd_120mm_HESHT_shells",
-				"qav_5Rnd_120mm_smoke_shells",
 				"20ABCT_400Rnd_762x51_Red",
 				"20ABCT_400Rnd_762x51_Red",
 				"20ABCT_400Rnd_762x51_Red",
@@ -360,7 +373,6 @@ class 20ABCT_CR2 : qav_challenger2
                 50
             };
             forceHideGunner=1;
-			startEngine="false";
             usePip=2;
             animationSourceStickX="turret_control_x";
             animationSourceStickY="turret_control_y";
@@ -637,6 +649,90 @@ class 20ABCT_CR2 : qav_challenger2
                     explosionShielding=1;
                     radius=0.2;
                 };
+            };
+        };
+    };
+    class ACE_SelfActions
+    {
+        class L30Status
+        {
+            displayName="L30A1 Status";
+            condition="player == (vehicle player) turretUnit [1]";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            statement="execVM '\z\20abct\addons\cr2\scripts\l30Status.sqf'";
+            showDisabled=0;
+            priority=10;
+        };
+        class LoadL30
+        {
+            displayName="Load L30A1";
+            condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_1Rnd_120mm_APFSDS','20ABCT_1Rnd_120mm_HESHT','20ABCT_1Rnd_120mm_Smoke']} count ((vehicle player) magazinesTurret [0])) < 1";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            class LoadAPFSDS
+            {
+                displayName="Load APFSDS";
+                condition="'20ABCT_Item_120mm_APFSDS' in (items player) || '20ABCT_Item_120mm_APFSDS' in (itemCargo (vehicle player))";
+                statement="['20ABCT_Item_120mm_APFSDS', '20ABCT_1Rnd_120mm_APFSDS', 'Loading APFSDS'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                exceptions[]={};
+                priority=3;
+            };
+            class LoadHESHT
+            {
+                displayName="Load HESH-T";
+                condition="'20ABCT_Item_120mm_HESHT' in (items player) || '20ABCT_Item_120mm_HESHT' in (itemCargo (vehicle player))";
+                statement="['20ABCT_Item_120mm_HESHT', '20ABCT_1Rnd_120mm_HESHT', 'Loading HESH-T'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                exceptions[]={};
+                priority=2;
+            };
+            class LoadSmoke
+            {
+                displayName="Load Smoke";
+                condition="'20ABCT_Item_120mm_Smoke' in (items player) || '20ABCT_Item_120mm_Smoke' in (itemCargo (vehicle player))";
+                statement="['20ABCT_Item_120mm_Smoke', '20ABCT_1Rnd_120mm_Smoke', 'Loading Smoke'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                exceptions[]={};
+                priority=1;
+            };
+        };
+        class UnloadL30
+        {
+            displayName="Unload L30A1";
+            condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_1Rnd_120mm_APFSDS','20ABCT_1Rnd_120mm_HESHT','20ABCT_1Rnd_120mm_Smoke']} count ((vehicle player) magazinesTurret [0])) > 0";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            class UnloadAPFSDS
+            {
+                displayName="Unload APFSDS";
+                condition="'20ABCT_1Rnd_120mm_APFSDS' in ((vehicle player) magazinesTurret [0])";
+                statement="['20ABCT_1Rnd_120mm_APFSDS', '20ABCT_Item_120mm_APFSDS', 'Unloading APFSDS'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                exceptions[]={};
+                priority=3;
+            };
+            class UnloadHESHT
+            {
+                displayName="Unload HESH-T";
+                condition="'20ABCT_1Rnd_120mm_HESHT' in ((vehicle player) magazinesTurret [0])";
+                statement="['20ABCT_1Rnd_120mm_HESHT', '20ABCT_Item_120mm_HESHT', 'Unloading HESH-T'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                exceptions[]={};
+                priority=2;
+            };
+            class UnloadSmoke
+            {
+                displayName="Unload Smoke";
+                condition="'20ABCT_1Rnd_120mm_Smoke' in ((vehicle player) magazinesTurret [0])";
+                statement="['20ABCT_1Rnd_120mm_Smoke', '20ABCT_Item_120mm_Smoke', 'Unloading Smoke'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                exceptions[]={};
+                priority=1;
             };
         };
     };

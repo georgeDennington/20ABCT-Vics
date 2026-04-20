@@ -18,8 +18,6 @@ class CfgPatches
             "20ABCT_UK3CB_BAF_L85A3_UGL_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDS",
             "20ABCT_UK3CB_BAF_L85A3_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDSUK3CB_underbarrel_acc_grippod_t",
             "20ABCT_UK3CB_BAF_L129A1_UK3CB_BAF_LLM_IR_TanUK3CB_BAF_TA648_308UK3CB_underbarrel_acc_fgrip_bipod",
-            "20ABCT_Item_APDS_Clip",
-            "20ABCT_Item_HEIT_Clip",
             "20ABCT_Item_COAX_400",
             "20ABCT_Item_COAX_600",
             "20ABCT_Item_GPMG_100",
@@ -110,8 +108,8 @@ class CfgMagazines
 	class CA_Magazine;
 	class VehicleMagazine;
 	class SmokeLauncherMag;
-	class 40Rnd_40mm_APFSDS_Tracer_Red_shells;
-	class 60Rnd_40mm_GPR_Tracer_Red_shells;
+	class 60Rnd_30mm_APFSDS_shells_Tracer_Red;
+	class 250Rnd_30mm_HE_shells_Tracer_Red;
 	class 2000Rnd_762x51_Belt_Red;
 	class 150Rnd_762x51_Box;
 	class 150Rnd_762x51_Box_Tracer;
@@ -122,44 +120,14 @@ class CfgMagazines
 		displayNameShort="SAFETY";
 		displayNameMFDFormat="SAFE";
 	};
-	class 20ABCT_3Rnd_30mm_APDS: 40Rnd_40mm_APFSDS_Tracer_Red_shells
-	{
-		displayName="L14A3 APDS-T RARDEN Clip";
-		displayNameShort="L14A3 APDS-T";
-		displayNameMFDFormat="SABOT";
-		ammo="B_20ABCT_30mm_APFSDS_Red";
-		initSpeed=1175;
-		count=3;
-		mass=60;
-		deleteIfEmpty=1;
-	};
-	class 20ABCT_6Rnd_30mm_APDS: 20ABCT_3Rnd_30mm_APDS
-	{
-		displayName="AI USE - SABOT";
-		count=6;
-	};
-	class 20ABCT_3Rnd_30mm_HEIT: 60Rnd_40mm_GPR_Tracer_Red_shells
-	{
-		displayName="L13A2 HEI-T RARDEN Clip";
-		displayNameShort="L13A2 HEI-T";
-		displayNameMFDFormat="SHELL";
-		ammo="B_20ABCT_30mm_HE_Red";
-		initSpeed=1070;
-		count=3;
-		mass=60;
-		deleteIfEmpty=1;
-	};
-	class 20ABCT_6Rnd_30mm_HEIT: 20ABCT_3Rnd_30mm_HEIT
-	{
-		displayName="AI USE - SHELL";
-		count=6;
-	};
 	class 20ABCT_400Rnd_762x51_Red: 2000Rnd_762x51_Belt_Red
 	{
 		displayName="COAX Belt (400 rds)";
 		displayNameShort="7.62x51mm";
 		displayNameMFDFormat="COAX";
 		ammo="rhs_ammo_762x51_M80A1EPR_Ball";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		initSpeed=862;
 		tracersEvery=2;
 		count=400;
@@ -172,6 +140,8 @@ class CfgMagazines
 		displayNameShort="7.62x51mm";
 		displayNameMFDFormat="COAX";
 		ammo="rhs_ammo_762x51_M80A1EPR_Ball";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		initSpeed=862;
 		tracersEvery=2;
 		count=600;
@@ -182,7 +152,7 @@ class CfgMagazines
 	{
 		scope=2;
 		scopeCurator=2;
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 7.62x51mm<br/>Rounds: 600<br/>Used in: L94A1, L37A1";
 		displayName="COAX Belt (400 rds)";
@@ -199,7 +169,7 @@ class CfgMagazines
 	{
 		scope=2;
 		scopeCurator=2;
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 7.62x51mm<br/>Rounds: 600<br/>Used in: L94A1, L37A1";
 		displayName="COAX Belt (600 rds)";
@@ -215,7 +185,7 @@ class CfgMagazines
 	class 20ABCT_COAX2_mag: 20ABCT_400Rnd_762x51_Red
 	{
 		scope=2;
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 7.62x51mm<br/>Rounds: 400<br/>Used in: L7A2, L94A1, L37A1";
 		displayName="GPMG Belt (100 rds)";
@@ -232,7 +202,7 @@ class CfgMagazines
 	class 20ABCT_COAX3_mag: 20ABCT_COAX2_mag
 	{
 		scope=2;
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 7.62x51mm<br/>Rounds: 400<br/>Used in: L7A2, L94A1, L37A1";
 		displayName="GPMG Belt (200 rds)";
@@ -249,7 +219,7 @@ class CfgMagazines
 	class 20ABCT_COAX4_mag: 20ABCT_COAX2_mag
 	{
 		scope=2;
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 7.62x51mm<br/>Rounds: 400<br/>Used in: L7A2, L94A1, L37A1";
 		displayName="COAX Belt (800 rds)";
@@ -263,11 +233,11 @@ class CfgMagazines
 		ace_arsenal_hide=-1;
 		deleteIfEmpty=-1;
 	};
-	class 20ABCT_APDS_mag: 40Rnd_40mm_APFSDS_Tracer_Red_shells
+	class 20ABCT_APDS_mag: 60Rnd_30mm_APFSDS_shells_Tracer_Red
 	{
 		scope=2;
 		scopeCurator=2;
-		picture="\20ABCT\data\UI\RARDEN.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 30x170mm<br/>Rounds: 3<br/>Used in: L21A2";
 		displayName="L14A3 APDS-T Clip";
@@ -280,11 +250,11 @@ class CfgMagazines
 		ace_arsenal_hide=-1;
 		deleteIfEmpty=-1;
 	};
-	class 20ABCT_HEIT_mag: 60Rnd_40mm_GPR_Tracer_Red_shells
+	class 20ABCT_HEIT_mag: 250Rnd_30mm_HE_shells_Tracer_Red
 	{
 		scope=2;
 		scopeCurator=2;
-		picture="\20ABCT\data\UI\RARDEN.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		descriptionshort="Calibre: 30x170mm<br/>Rounds: 3<br/>Used in: L21A2";
 		displayName="L13A2 HEI-T Clip";
@@ -301,6 +271,43 @@ class CfgMagazines
 	{
 		count=3;
 		displayName="VIRSS Reload";
+	};
+	// Challenger 2 - 120mm single-round magazines
+	class qav_35Rnd_120mm_APFSDS_L27_shells;
+	class qav_15Rnd_120mm_HESHT_shells;
+	class qav_5Rnd_120mm_smoke_shells;
+	class 20ABCT_1Rnd_120mm_APFSDS: qav_35Rnd_120mm_APFSDS_L27_shells
+	{
+		displayName="L27 APFSDS Round";
+		displayNameShort="L27 APFSDS";
+		displayNameMFDFormat="APFSDS";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		count=1;
+		mass=200;
+		deleteIfEmpty=1;
+	};
+	class 20ABCT_1Rnd_120mm_HESHT: qav_15Rnd_120mm_HESHT_shells
+	{
+		displayName="120mm HESH-T Round";
+		displayNameShort="HESH-T";
+		displayNameMFDFormat="HESH";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		count=1;
+		mass=200;
+		deleteIfEmpty=1;
+	};
+	class 20ABCT_1Rnd_120mm_Smoke: qav_5Rnd_120mm_smoke_shells
+	{
+		displayName="120mm Smoke Round";
+		displayNameShort="Smoke";
+		displayNameMFDFormat="SMOKE";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		count=1;
+		mass=150;
+		deleteIfEmpty=1;
 	};
 };
 
@@ -452,8 +459,8 @@ class cfgWeapons
 			FCSZeroingDelay=2;
 			magazines[]=
 			{
-				"20ABCT_3Rnd_30mm_HEIT",
-				"20ABCT_3Rnd_30mm_APDS"
+				"20ABCT_HEIT_mag",
+				"20ABCT_APDS_mag"
 			};
 			magazineReloadTime=0.67000002;
 			class player: player
@@ -495,8 +502,8 @@ class cfgWeapons
 			magazineReloadTime=3;
 			magazines[]=
 			{
-				"20ABCT_6Rnd_30mm_HEIT",
-				"20ABCT_6Rnd_30mm_APDS"
+				"20ABCT_HEIT_mag",
+				"20ABCT_APDS_mag"
 			};
 		};
 	};
@@ -1263,39 +1270,13 @@ class cfgWeapons
 	// Maps to weapon magazines via reload scripts
 	// See plan: swift-frolicking-trinket.md for full mapping table
 	// ============================================================
-	class 20ABCT_Item_APDS_Clip: ACE_ItemCore
-	{
-		scope=2;
-		scopeCurator=2;
-		displayName="L14A3 APDS-T Clip";
-		descriptionShort="30x170mm APDS-T clip for RARDEN L21A2. 3 rounds.";
-		picture="\20ABCT\data\UI\RARDEN.paa";
-		model="\A3\weapons_F\ammo\mag_univ.p3d";
-		class ItemInfo: CBA_MiscItem_ItemInfo
-		{
-			mass=40;
-		};
-	};
-	class 20ABCT_Item_HEIT_Clip: ACE_ItemCore
-	{
-		scope=2;
-		scopeCurator=2;
-		displayName="L13A2 HEI-T Clip";
-		descriptionShort="30x170mm HEI-T clip for RARDEN L21A2. 3 rounds.";
-		picture="\20ABCT\data\UI\RARDEN.paa";
-		model="\A3\weapons_F\ammo\mag_univ.p3d";
-		class ItemInfo: CBA_MiscItem_ItemInfo
-		{
-			mass=40;
-		};
-	};
 	class 20ABCT_Item_COAX_400: ACE_ItemCore
 	{
 		scope=2;
 		scopeCurator=2;
 		displayName="COAX Belt (400 rds)";
 		descriptionShort="7.62x51mm belt, 400 rounds. For L94A1 chain gun.";
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
@@ -1308,7 +1289,7 @@ class cfgWeapons
 		scopeCurator=2;
 		displayName="COAX Belt (600 rds)";
 		descriptionShort="7.62x51mm belt, 600 rounds. For L94A1 chain gun.";
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
@@ -1321,7 +1302,7 @@ class cfgWeapons
 		scopeCurator=2;
 		displayName="GPMG Belt (100 rds)";
 		descriptionShort="7.62x51mm belt, 100 rounds. For L37A1 GPMG.";
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
@@ -1334,7 +1315,7 @@ class cfgWeapons
 		scopeCurator=2;
 		displayName="GPMG Belt (200 rds)";
 		descriptionShort="7.62x51mm belt, 200 rounds. For L37A1 GPMG.";
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
@@ -1347,11 +1328,54 @@ class cfgWeapons
 		scopeCurator=2;
 		displayName="COAX Belt (800 rds)";
 		descriptionShort="7.62x51mm belt, 800 rounds. For L94A1 chain gun.";
-		picture="\20ABCT\data\UI\COAX.paa";
+		picture="\UK3CB_BAF_Vehicles\addons\UK3CB_BAF_Vehicles_Weapons\data\gear_magazine_30mm_clip_ca.paa";
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
 			mass=259;
+		};
+	};
+	// Challenger 2 - 120mm shell items
+	class 20ABCT_Item_120mm_APFSDS: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		ace_arsenal_hide=0;
+		displayName="L27 APFSDS Round";
+		descriptionShort="120mm L27 APFSDS-T round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=200;
+		};
+	};
+	class 20ABCT_Item_120mm_HESHT: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		ace_arsenal_hide=0;
+		displayName="120mm HESH-T Round";
+		descriptionShort="120mm HESH-T round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=200;
+		};
+	};
+	class 20ABCT_Item_120mm_Smoke: ACE_ItemCore
+	{
+		scope=2;
+		scopeCurator=2;
+		ace_arsenal_hide=0;
+		displayName="120mm Smoke Round";
+		descriptionShort="120mm smoke round for L30A1 rifled gun.";
+		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		model="\A3\weapons_F\ammo\mag_univ.p3d";
+		class ItemInfo: CBA_MiscItem_ItemInfo
+		{
+			mass=150;
 		};
 	};
 };

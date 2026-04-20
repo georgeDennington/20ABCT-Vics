@@ -481,6 +481,48 @@ class CfgVehicles
             };
         };
     };
+    class 20ABCT_CR2_box: Box_NATO_AmmoVeh_F
+    {
+        scope=2;
+        scopeCurator=2;
+        displayName="Challenger 2 Ammo Box";
+        editorSubcategory="20ABCT_Log";
+        maximumLoad=5150;
+        transportAmmo=0;
+        ace_cargo_space=0;
+        ace_cargo_hasCargo=0;
+        ace_cargo_noRename=1;
+        ace_cargo_size=5;
+        ace_cargo_canLoad=1;
+        ace_dragging_ignoreWeightCarry=1;
+        ace_rearm_defaultSupply=0;
+        class TransportItems
+        {
+            class _xx_20ABCT_Item_120mm_APFSDS
+            {
+                name="20ABCT_Item_120mm_APFSDS";
+                count=35;
+            };
+            class _xx_20ABCT_Item_120mm_HESHT
+            {
+                name="20ABCT_Item_120mm_HESHT";
+                count=15;
+            };
+            class _xx_20ABCT_Item_120mm_Smoke
+            {
+                name="20ABCT_Item_120mm_Smoke";
+                count=5;
+            };
+        };
+        class TransportMagazines
+        {
+            class _xx_20ABCT_COAX_mag
+            {
+                magazine="20ABCT_COAX_mag";
+                count=10;
+            };
+        };
+    };
     class 20ABCT_med_crate: ACM_MedicalSupplyCrate_Basic
     {
         scope=2;

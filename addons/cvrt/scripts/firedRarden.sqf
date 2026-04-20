@@ -5,14 +5,14 @@
 
 params ["_veh", "", "", "", "", "_mag"];
 
-if !(_mag in ["20ABCT_3Rnd_30mm_APDS", "20ABCT_3Rnd_30mm_HEIT"]) exitWith {};
+if !(_mag in ["20ABCT_APDS_mag", "20ABCT_HEIT_mag"]) exitWith {};
 
 // Delay 0.5s to let engine finish processing the shot and decrement ammo
 [{
 	params ["_veh"];
 	{
 		_x params ["_m", "_t", "_a"];
-		if (_a <= 0 && {_m in ["20ABCT_3Rnd_30mm_APDS", "20ABCT_3Rnd_30mm_HEIT"]}) then {
+		if (_a <= 0 && {_m in ["20ABCT_APDS_mag", "20ABCT_HEIT_mag"]}) then {
 			_veh removeMagazineTurret [_m, _t];
 		};
 	} forEach (magazinesAllTurrets _veh);
