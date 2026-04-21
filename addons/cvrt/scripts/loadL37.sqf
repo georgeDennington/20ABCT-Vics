@@ -3,7 +3,7 @@ params ["_itemClass", "_magClass", "_title"];
 private _veh = vehicle player;
 
 [
-    3,
+    .5,
     [_veh, _itemClass, _magClass],
     {
         (_this select 0) params ["_veh", "_itemClass", "_magClass"];
@@ -13,7 +13,7 @@ private _veh = vehicle player;
             _veh addItemCargoGlobal [_itemClass, -1];
         };
         _veh addMagazineTurret [_magClass, [0]];
-        _veh loadMagazine [[0], "20ABCT_30mm_L21A2", _magClass];
+        _veh loadMagazine [[0], "20ABCT_762_L37A2", _magClass];
     },
     {
         hint "Loading cancelled";

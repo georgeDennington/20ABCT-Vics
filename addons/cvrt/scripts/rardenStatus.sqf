@@ -3,8 +3,8 @@ private _tMags = _veh magazinesTurret [0];
 private _loadedAPDS = { _x == "20ABCT_APDS_mag" } count _tMags;
 private _loadedHEIT = { _x == "20ABCT_HEIT_mag" } count _tMags;
 private _cMags = magazineCargo _veh;
-private _availAPDS = { _x == "20ABCT_APDS_mag" } count _cMags;
-private _availHEIT = { _x == "20ABCT_HEIT_mag" } count _cMags;
+private _availAPDS = { _x == "20ABCT_Item_30mm_APDST" } count _cMags;
+private _availHEIT = { _x == "20ABCT_Item_30mm_HEIT" } count _cMags;
 
 private _lines = [];
 {
