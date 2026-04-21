@@ -22,7 +22,7 @@ class 20ABCT_CR2 : qav_challenger2
         class _xx_20ABCT_Item_120mm_APFSDS
         {
             name="20ABCT_Item_120mm_APFSDS";
-            count=35;
+            count=38;
         };
         class _xx_20ABCT_Item_120mm_HESHT
         {
@@ -32,6 +32,11 @@ class 20ABCT_CR2 : qav_challenger2
         class _xx_20ABCT_Item_120mm_Smoke
         {
             name="20ABCT_Item_120mm_Smoke";
+            count=2;
+        };
+        class _xx_20ABCT_Item_COAX_400
+        {
+            name="20ABCT_Item_COAX_400";
             count=5;
         };
     };
@@ -345,19 +350,7 @@ class 20ABCT_CR2 : qav_challenger2
                 "20ABCT_L30A1",
                 "20ABCT_762_L94A1_CR2"
             };
-            magazines[]=
-            {
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red",
-				"20ABCT_400Rnd_762x51_Red"
-            };
+            magazines[]={};
             soundServo[]=
             {
                 "A3\Sounds_F\vehicles\armor\noises\servo_armor_gunner",
@@ -392,7 +385,7 @@ class 20ABCT_CR2 : qav_challenger2
             gunnerOutOpticsEffect[]={};
             gunnerOpticsEffect[]={};
             gunnerForceOptics=1;
-            startEngine=1;
+            startEngine=0;
             inGunnerMayFire=1;
             viewGunnerInExternal=0;
             isPersonTurret=0;
@@ -656,7 +649,7 @@ class 20ABCT_CR2 : qav_challenger2
     {
         class L30Status
         {
-            displayName="L30A1 Status";
+            displayName="MAIN Status";
             condition="player == (vehicle player) turretUnit [1]";
             exceptions[]=
             {
@@ -669,7 +662,7 @@ class 20ABCT_CR2 : qav_challenger2
         };
         class LoadL30
         {
-            displayName="Load L30A1";
+            displayName="Load MAIN";
             condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_1Rnd_120mm_APFSDS','20ABCT_1Rnd_120mm_HESHT','20ABCT_1Rnd_120mm_Smoke']} count ((vehicle player) magazinesTurret [0])) < 1";
             exceptions[]=
             {
@@ -678,32 +671,32 @@ class 20ABCT_CR2 : qav_challenger2
             };
             class LoadAPFSDS
             {
-                displayName="Load APFSDS";
+                displayName="Load FIN";
                 condition="'20ABCT_Item_120mm_APFSDS' in (items player) || '20ABCT_Item_120mm_APFSDS' in (itemCargo (vehicle player))";
-                statement="['20ABCT_Item_120mm_APFSDS', '20ABCT_1Rnd_120mm_APFSDS', 'Loading APFSDS'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                statement="['20ABCT_Item_120mm_APFSDS', '20ABCT_1Rnd_120mm_APFSDS', 'Loading FIN'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
                 exceptions[]={};
                 priority=3;
             };
             class LoadHESHT
             {
-                displayName="Load HESH-T";
+                displayName="Load HESH";
                 condition="'20ABCT_Item_120mm_HESHT' in (items player) || '20ABCT_Item_120mm_HESHT' in (itemCargo (vehicle player))";
-                statement="['20ABCT_Item_120mm_HESHT', '20ABCT_1Rnd_120mm_HESHT', 'Loading HESH-T'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                statement="['20ABCT_Item_120mm_HESHT', '20ABCT_1Rnd_120mm_HESHT', 'Loading HESH'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
                 exceptions[]={};
                 priority=2;
             };
             class LoadSmoke
             {
-                displayName="Load Smoke";
+                displayName="Load SMOKE";
                 condition="'20ABCT_Item_120mm_Smoke' in (items player) || '20ABCT_Item_120mm_Smoke' in (itemCargo (vehicle player))";
-                statement="['20ABCT_Item_120mm_Smoke', '20ABCT_1Rnd_120mm_Smoke', 'Loading Smoke'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
+                statement="['20ABCT_Item_120mm_Smoke', '20ABCT_1Rnd_120mm_Smoke', 'Loading SMOKE'] execVM '\z\20abct\addons\cr2\scripts\loadL30.sqf'";
                 exceptions[]={};
                 priority=1;
             };
         };
         class UnloadL30
         {
-            displayName="Unload L30A1";
+            displayName="Unload MAIN";
             condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_1Rnd_120mm_APFSDS','20ABCT_1Rnd_120mm_HESHT','20ABCT_1Rnd_120mm_Smoke']} count ((vehicle player) magazinesTurret [0])) > 0";
             exceptions[]=
             {
@@ -712,27 +705,76 @@ class 20ABCT_CR2 : qav_challenger2
             };
             class UnloadAPFSDS
             {
-                displayName="Unload APFSDS";
+                displayName="Unload FIN";
                 condition="'20ABCT_1Rnd_120mm_APFSDS' in ((vehicle player) magazinesTurret [0])";
-                statement="['20ABCT_1Rnd_120mm_APFSDS', '20ABCT_Item_120mm_APFSDS', 'Unloading APFSDS'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                statement="['20ABCT_1Rnd_120mm_APFSDS', '20ABCT_Item_120mm_APFSDS', 'Unloading FIN'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
                 exceptions[]={};
                 priority=3;
             };
             class UnloadHESHT
             {
-                displayName="Unload HESH-T";
+                displayName="Unload HESH";
                 condition="'20ABCT_1Rnd_120mm_HESHT' in ((vehicle player) magazinesTurret [0])";
-                statement="['20ABCT_1Rnd_120mm_HESHT', '20ABCT_Item_120mm_HESHT', 'Unloading HESH-T'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                statement="['20ABCT_1Rnd_120mm_HESHT', '20ABCT_Item_120mm_HESHT', 'Unloading HESH'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
                 exceptions[]={};
                 priority=2;
             };
             class UnloadSmoke
             {
-                displayName="Unload Smoke";
+                displayName="Unload SMOKE";
                 condition="'20ABCT_1Rnd_120mm_Smoke' in ((vehicle player) magazinesTurret [0])";
-                statement="['20ABCT_1Rnd_120mm_Smoke', '20ABCT_Item_120mm_Smoke', 'Unloading Smoke'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
+                statement="['20ABCT_1Rnd_120mm_Smoke', '20ABCT_Item_120mm_Smoke', 'Unloading SMOKE'] execVM '\z\20abct\addons\cr2\scripts\unloadL30.sqf'";
                 exceptions[]={};
                 priority=1;
+            };
+        };
+        class L94Status
+        {
+            displayName="COAX Status";
+            condition="player == (vehicle player) turretUnit [1]";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            statement="execVM '\z\20abct\addons\cr2\scripts\l94Status.sqf'";
+            showDisabled=0;
+            priority=10;
+        };
+        class LoadL94
+        {
+            displayName="Load COAX";
+            condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_400Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) < 1";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            class Load400
+            {
+                displayName="Load 400 rds";
+                condition="'20ABCT_Item_COAX_400' in (items player) || '20ABCT_Item_COAX_400' in (itemCargo (vehicle player))";
+                statement="['20ABCT_Item_COAX_400', '20ABCT_400Rnd_762x51_Red', 'Loading 400 rds'] execVM '\z\20abct\addons\cr2\scripts\loadL94.sqf'";
+                exceptions[]={};
+                priority=3;
+            };
+        };
+        class UnloadL94
+        {
+            displayName="Unload COAX";
+            condition="player == (vehicle player) turretUnit [1] && ({_x in ['20ABCT_400Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) > 0";
+            exceptions[]=
+            {
+                "isNotInside",
+                "isNotSitting"
+            };
+            class UnloadL94
+            {
+                displayName="Unload 400 rds";
+                condition="'20ABCT_400Rnd_762x51_Red' in ((vehicle player) magazinesTurret [0])";
+                statement="['20ABCT_400Rnd_762x51_Red', '20ABCT_Item_COAX_400', 'Unloading 400 rds'] execVM '\z\20abct\addons\cr2\scripts\unloadL94.sqf'";
+                exceptions[]={};
+                priority=3;
             };
         };
     };
