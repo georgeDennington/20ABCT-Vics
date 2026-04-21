@@ -537,10 +537,7 @@ class CfgVehicles
 					"20ABCT_30mm_L21A2",
 					"20ABCT_762_L37A1"
 				};
-				magazines[]=
-				{
-					"20ABCT_600Rnd_762x51_Red"
-				};
+				magazines[]={};
 			};
 		};
 		class AcreIntercoms

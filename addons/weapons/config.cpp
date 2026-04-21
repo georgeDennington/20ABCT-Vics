@@ -22,7 +22,9 @@ class CfgPatches
             "20ABCT_Item_COAX_600",
             "20ABCT_Item_GPMG_100",
             "20ABCT_Item_GPMG_200",
-            "20ABCT_Item_COAX_800"
+            "20ABCT_Item_COAX_800",
+			"20ABCT_Item_30mm_APDST",
+			"20ABCT_Item_30mm_HEIT"
         };
         requiredAddons[]=
         {
@@ -1390,7 +1392,7 @@ class cfgWeapons
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
-			mass=200;
+			mass=60;
 		};
 	};
 	class 20ABCT_Item_30mm_HEIT: ACE_ItemCore
@@ -1404,7 +1406,7 @@ class cfgWeapons
 		model="\A3\weapons_F\ammo\mag_univ.p3d";
 		class ItemInfo: CBA_MiscItem_ItemInfo
 		{
-			mass=200;
+			mass=60;
 		};
 	};
 };
