@@ -68,11 +68,11 @@ class cfgMods
 	{
 		action="https://discord.gg/t7PryysJCn";
 		dir="20ABCT";
-		Logo="\core\data\UI\Logo.paa";
-		LogoOver="\core\data\UI\Logo_a.paa";
-		LogoSmall="\core\data\UI\Logo.paa";
+		Logo="\20ABCT\addons\core\data\UI\Logo.paa";
+		LogoOver="\20ABCT\addons\core\data\UI\Logo_a.paa";
+		LogoSmall="\20ABCT\addons\core\data\UI\Logo.paa";
 		name="20th ABCT";
-		picture="\core\data\UI\Logo.paa";
+		picture="\20ABCT\addons\core\data\UI\Logo.paa";
 		overview="";
 		author="20th ABCT Mod Creation Team";
 		tooltip="20th ABCT";

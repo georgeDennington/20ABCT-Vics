@@ -625,7 +625,6 @@ class CfgVehicles
 				condition="player == (vehicle player) turretUnit [0,0]";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				statement="execVM '\z\20abct\addons\cvrt\scripts\rardenStatus.sqf'";

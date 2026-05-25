@@ -2,8 +2,8 @@ private _veh = vehicle player;
 private _tMags = _veh magazinesTurret [0];
 private _coaxmags = ["20ABCT_400Rnd_762x51_Red"];
 private _loadedCount = { _x in _coaxmags } count _tMags;
-private _cItems = magazineCargo _veh;
-private _avail400 = { _x == "20ABCT_COAX_mag" } count _cItems;
+private _cItems = itemCargo _veh;
+private _avail400 = { _x == "20ABCT_Item_COAX_400" } count _cItems;
 
 private _lines = [];
 {

@@ -1,5 +1,5 @@
-// XEH_preInit.sqf - CVRT addon initialization
-// Registers Fired EH on all CVRT variants to clean up empty RARDEN magazines
+// XEH_preInit.sqf - WR addon initialization
+// Registers Fired EH on all WR variants to clean up empty RARDEN magazines
 
 private _firedHandler = {
 	params ["_veh", "", "", "", "", "_mag"];
@@ -15,7 +15,7 @@ private _firedHandler = {
 	}, [_veh], 0.5] call CBA_fnc_waitAndExecute;
 };
 
-["20ABCT_CVRT_d", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
-["20ABCT_CVRT_w", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
-["20ABCT_CVRT_d_dep", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
-["20ABCT_CVRT_w_dep", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
+["20ABCT_fv510_warrior_w", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
+["20ABCT_fv510_warrior_dep", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
+["20ABCT_fv510_warrior_relic", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;
+["20ABCT_fv514_maov", "fired", _firedHandler] call CBA_fnc_addClassEventHandler;

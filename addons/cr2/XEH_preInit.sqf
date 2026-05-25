@@ -5,12 +5,12 @@ private _120mmMags = ["20ABCT_1Rnd_120mm_APFSDS", "20ABCT_1Rnd_120mm_HESHT", "20
 
 private _firedHandler = {
 	params ["_veh", "", "", "", "", "_mag"];
-	if !(_mag in ["20ABCT_1Rnd_120mm_APFSDS", "20ABCT_1Rnd_120mm_HESHT", "20ABCT_1Rnd_120mm_Smoke"]) exitWith {};
+	if !(_mag in ["20ABCT_1Rnd_120mm_APFSDS", "20ABCT_1Rnd_120mm_HESHT", "20ABCT_1Rnd_120mm_Smoke", "20ABCT_400Rnd_762x51_Red", "20ABCT_600Rnd_762x51_Red"]) exitWith {};
 	[{
 		params ["_veh"];
 		{
 			_x params ["_m", "_t", "_a"];
-			if (_a <= 0 && {_m in ["20ABCT_1Rnd_120mm_APFSDS", "20ABCT_1Rnd_120mm_HESHT", "20ABCT_1Rnd_120mm_Smoke"]}) then {
+			if (_a <= 0 && {_m in ["20ABCT_1Rnd_120mm_APFSDS", "20ABCT_1Rnd_120mm_HESHT", "20ABCT_1Rnd_120mm_Smoke", "20ABCT_400Rnd_762x51_Red", "20ABCT_600Rnd_762x51_Red"]}) then {
 				_veh removeMagazineTurret [_m, _t];
 			};
 		} forEach (magazinesAllTurrets _veh);

@@ -16,6 +16,7 @@ class CfgPatches
 			"20ABCT_fv510_warrior_ai_dep"
 		};
 		weapons[]={};
+		requiredVersion=0.50;
 		requiredAddons[]=
 		{
 			"20ABCT_core",
@@ -36,8 +37,12 @@ class Optics_Gunner_MBT_03: Optics_Armored
 
 class CfgVehicles
 {
-	class NewTurret;
-	class APC_Tracked_03_base_F
+	class LandVehicle;
+	class Tank: LandVehicle
+	{
+		class NewTurret;
+	};
+	class Tank_F: Tank
 	{
 		class AnimationSources;
 		class ACE_SelfActions;
@@ -60,13 +65,16 @@ class CfgVehicles
 		};
 		class Sounds;
 	};
+	class APC_Tracked_03_base_F: Tank_F
+	{
+	};
 	class 20ABCT_fv510_warrior_base: APC_Tracked_03_base_F
 	{
 		author="20th ABCT";
 		side=1;
 		faction="20ABCT";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="z\20abct\addons\warriors\data\UI\Garage_Icon.paa";
 		animationList[]=
 		{
 			"showBags",
@@ -195,8 +203,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-					"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa",
 					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -211,8 +219,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\apc_tracked_03_ext_d_co.paa",
-					"\20ABCT\data\apc_tracked_03_ext2_d_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext_d_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext2_d_co.paa",
 					"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -227,8 +235,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11A_TurretTextureWdl.paa",
-					"\20ABCT\data\11A_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11A_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11A_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -243,8 +251,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11I_TurretTextureWdl.paa",
-					"\20ABCT\data\11I_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11I_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11I_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_greenbeige_co.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -259,8 +267,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11J_TurretTextureWdl.paa",
-					"\20ABCT\data\11J_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11J_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11J_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -275,8 +283,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11K_TurretTextureWdl.paa",
-					"\20ABCT\data\11K_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11K_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\11K_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -291,8 +299,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\20A_TurretTextureWdl.paa",
-					"\20ABCT\data\20A_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\20A_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\20A_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -307,8 +315,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\21C_TurretTextureWdl.paa",
-					"\20ABCT\data\21C_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\21C_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\21C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_greenbeige_co.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -323,8 +331,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\22C_TurretTextureWdl.paa",
-					"\20ABCT\data\22C_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\22C_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\22C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -339,8 +347,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\23C_TurretTextureWdl.paa",
-					"\20ABCT\data\23C_BodyTextureWdl.paa",
+					"z\20abct\addons\warriors\data\23C_TurretTextureWdl.paa",
+					"z\20abct\addons\warriors\data\23C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -355,8 +363,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11A_TurretTextureDes.paa",
-					"\20ABCT\data\11A_BodyTextureDes.paa",
+					"z\20abct\addons\warriors\data\11A_TurretTextureDes.paa",
+					"z\20abct\addons\warriors\data\11A_BodyTextureDes.paa",
 					"\A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"\A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -371,8 +379,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11I_TurretTextureDes.paa",
-					"\20ABCT\data\11I_BodyTextureDes.paa",
+					"z\20abct\addons\warriors\data\11I_TurretTextureDes.paa",
+					"z\20abct\addons\warriors\data\11I_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -387,8 +395,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11J_TurretTextureDes.paa",
-					"\20ABCT\data\11J_BodyTextureDes.paa",
+					"z\20abct\addons\warriors\data\11J_TurretTextureDes.paa",
+					"z\20abct\addons\warriors\data\11J_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -403,8 +411,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11K_TurretTextureDes.paa",
-					"\20ABCT\data\11K_BodyTextureDes.paa",
+					"z\20abct\addons\warriors\data\11K_TurretTextureDes.paa",
+					"z\20abct\addons\warriors\data\11K_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -419,10 +427,10 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\UN_0.paa",
-					"\20ABCT\data\UN_1.paa",
+					"z\20abct\addons\warriors\data\UN_0.paa",
+					"z\20abct\addons\warriors\data\UN_1.paa",
 					"A3\Armor_F\Data\camonet_green_CO.paa",
-					"\20ABCT\data\cage_white_CO.paa"
+					"A3\Armor_F\Data\cage_white_CO.paa"
 				};
 				factions[]=
 				{
@@ -556,21 +564,6 @@ class CfgVehicles
 		};
 		class TransportMagazines
 		{
-			class _xx_20ABCT_APDS_mag
-			{
-				magazine="20ABCT_APDS_mag";
-				count=52;
-			};
-			class _xx_20ABCT_HEIT_mag
-			{
-				magazine="20ABCT_HEIT_mag";
-				count=32;
-			};
-			class _xx_20ABCT_COAX_mag
-			{
-				magazine="20ABCT_COAX_mag";
-				count=5;
-			};
 			class _xx_SmokeShellGreen
 			{
 				magazine="SmokeShellGreen";
@@ -599,6 +592,21 @@ class CfgVehicles
 		};
 		class TransportItems
 		{
+			class _xx_20ABCT_Item_30mm_APDST
+			{
+				name="20ABCT_Item_30mm_APDST";
+				count=52;
+			};
+			class _xx_20ABCT_Item_30mm_HEIT
+			{
+				name="20ABCT_Item_30mm_HEIT";
+				count=32;
+			};
+			class _xx_20ABCT_Item_COAX_400
+			{
+				name="20ABCT_Item_COAX_400";
+				count=5;
+			};
 			class _xx_GME_556AmmoBox
 			{
 				Name="GME_556AmmoBox";
@@ -954,7 +962,6 @@ class CfgVehicles
 				};
 				magazines[]=
 				{
-					"20ABCT_400Rnd_762x51_Red"
 				};
 			};
 		};
@@ -968,149 +975,191 @@ class CfgVehicles
 		scopeCurator=2;
 		faction="20ABCT";
 		editorSubcategory="20ABCT_AFV";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\warriors\data\UI\Garage_Icon.paa";
 		hiddenSelectionsTextures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext_d_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_d_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext_d_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext2_d_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa",
 			"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 			"A3\Armor_F\Data\cage_csat_CO.paa",
-			"\20ABCT\data\11A_TurretTextureWdl.paa",
-			"\20ABCT\data\11I_TurretTextureWdl.paa",
-			"\20ABCT\data\11J_TurretTextureWdl.paa",
-			"\20ABCT\data\11K_TurretTextureWdl.paa",
-			"\20ABCT\data\20A_TurretTextureWdl.paa",
-			"\20ABCT\data\21C_TurretTextureWdl.paa",
-			"\20ABCT\data\22C_TurretTextureWdl.paa",
-			"\20ABCT\data\23C_TurretTextureWdl.paa",
-			"\20ABCT\data\11A_TurretTextureDes.paa",
-			"\20ABCT\data\11I_TurretTextureDes.paa",
-			"\20ABCT\data\11J_TurretTextureDes.paa",
-			"\20ABCT\data\11K_TurretTextureDes.paa",
-			"\20ABCT\data\20A_TurretTextureDes.paa",
-			"\20ABCT\data\21C_TurretTextureDes.paa",
-			"\20ABCT\data\22C_TurretTextureDes.paa",
-			"\20ABCT\data\23C_TurretTextureDes.paa",
-			"\20ABCT\data\11A_BodyTextureWdl.paa",
-			"\20ABCT\data\11I_BodyTextureWdl.paa",
-			"\20ABCT\data\11J_BodyTextureWdl.paa",
-			"\20ABCT\data\11K_BodyTextureWdl.paa",
-			"\20ABCT\data\20A_BodyTextureWdl.paa",
-			"\20ABCT\data\21C_BodyTextureWdl.paa",
-			"\20ABCT\data\22C_BodyTextureWdl.paa",
-			"\20ABCT\data\23C_BodyTextureWdl.paa",
-			"\20ABCT\data\11A_BodyTextureDes.paa",
-			"\20ABCT\data\11I_BodyTextureDes.paa",
-			"\20ABCT\data\11J_BodyTextureDes.paa",
-			"\20ABCT\data\11K_BodyTextureDes.paa",
-			"\20ABCT\data\20A_BodyTextureDes.paa",
-			"\20ABCT\data\21C_BodyTextureDes.paa",
-			"\20ABCT\data\22C_BodyTextureDes.paa",
-			"\20ABCT\data\23C_BodyTextureDes.paa",
-			"\20ABCT\data\UN_0",
-			"\20ABCT\data\UN_1"
+			"z\20abct\addons\warriors\data\11A_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11I_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11J_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11K_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\20A_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\21C_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\22C_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\23C_TurretTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11A_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\11I_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\11J_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\11K_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\20A_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\21C_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\22C_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\23C_TurretTextureDes.paa",
+			"z\20abct\addons\warriors\data\11A_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11I_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11J_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11K_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\20A_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\21C_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\22C_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\23C_BodyTextureWdl.paa",
+			"z\20abct\addons\warriors\data\11A_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\11I_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\11J_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\11K_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\20A_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\21C_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\22C_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\23C_BodyTextureDes.paa",
+			"z\20abct\addons\warriors\data\UN_0",
+			"z\20abct\addons\warriors\data\UN_1"
 		};
 		textures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa"
 		};
 		class ACE_SelfActions: ACE_SelfActions
 		{
-			class LoaderActions
+			class RARDENStatus
 			{
-				icon="a3\ui_f\data\GUI\Rsc\RscDisplayArsenal\cargoMagAll_ca.paa";
-				displayName="Load RARDEN/Chain Gun";
-				condition="";
+				icon="\cvrt\data\UI\RARDEN.paa";
+				displayName="RARDEN Status";
+				condition="player == (vehicle player) turretUnit [0,0]";
 				exceptions[]=
 				{
-					"isNotInside",
+					"isNotSitting"
+				};
+				statement="execVM '\z\20abct\addons\warriors\scripts\rardenStatus.sqf'";
+				showDisabled=0;
+				priority=10;
+			};
+			class LoadRARDEN
+			{
+				icon="\cvrt\data\UI\RARDEN.paa";
+				displayName="Load RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) < 2";
+				exceptions[]=
+				{
 					"isNotSitting"
 				};
 				class APDSLoad
 				{
 					displayName="Load SABOT";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_APDS_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_APDS_mag'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_APDS_mag']; vehicle player addMagazineCargoGlobal ['20ABCT_APDS_mag', -1]";
+					condition="'20ABCT_Item_30mm_APDST' in (magazineCargo (vehicle player))";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_Item_30mm_APDST', '20ABCT_APDS_mag', 'Loading SABOT'] execVM '\z\20abct\addons\warriors\scripts\loadRarden.sqf'";
 					exceptions[]={};
-					priority=1;
+					priority=3;
 				};
 				class HELoad
 				{
 					displayName="Load SHELL";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_HEIT_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_HEIT_mag'; vehicle _player loadMagazine [[0], '20ABCT_30mm_L21A2', '20ABCT_HEIT_mag']; vehicle player addMagazineCargoGlobal ['20ABCT_HEIT_mag', -1]";
+					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_Item_30mm_HEIT', '20ABCT_HEIT_mag', 'Loading SHELL'] execVM '\z\20abct\addons\warriors\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
 				};
-				class CoaxLoad
+			};
+			class UnloadRARDEN
+			{
+				icon="\cvrt\data\UI\RARDEN.paa";
+				displayName="Unload RARDEN";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) > 0";
+				exceptions[]=
 				{
-					displayName="Reload COAX (400 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_400Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX_mag', -1]";
+					"isNotSitting"
+				};
+				class Unload_Mag1_APDS
+				{
+					displayName="Mag 1: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_APDS_mag', '20ABCT_Item_30mm_APDS', 'Unloading SABOT'] execVM '\z\20abct\addons\warriors\scripts\unloadRarden.sqf'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag1_HEIT
+				{
+					displayName="Mag 1: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_HEIT_mag', '20ABCT_Item_30mm_HEIT', 'Unloading SHELL'] execVM '\z\20abct\addons\warriors\scripts\unloadRarden.sqf'";
+					exceptions[]={};
+					priority=2;
+				};
+				class Unload_Mag2_APDS
+				{
+					displayName="Mag 2: SABOT";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_APDS_mag', '20ABCT_Item_30mm_APDS', 'Unloading SABOT'] execVM '\z\20abct\addons\warriors\scripts\unloadRarden.sqf'";
+					exceptions[]={};
+					priority=1;
+				};
+				class Unload_Mag2_HEIT
+				{
+					displayName="Mag 2: SHELL";
+					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
+					icon="\cvrt\data\UI\RARDEN.paa";
+					statement="['20ABCT_HEIT_mag', '20ABCT_Item_30mm_HEIT', 'Unloading SHELL'] execVM '\z\20abct\addons\warriors\scripts\unloadRarden.sqf'";
+					exceptions[]={};
+					priority=1;
+				};
+			};
+			class L94Status
+			{
+				displayName="COAX Status";
+				condition="player == (vehicle player) turretUnit [0,0]";
+				exceptions[]=
+				{
+					"isNotInside",
+					"isNotSitting"
+				};
+				statement="execVM '\z\20abct\addons\warriors\scripts\l94Status.sqf'";
+				showDisabled=0;
+				priority=10;
+			};
+			class LoadL94
+			{
+				displayName="Load COAX";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_400Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) < 1";
+				exceptions[]=
+				{
+					"isNotSitting"
+				};
+				class Load400
+				{
+					displayName="Load 400 rds";
+					condition="'20ABCT_Item_COAX_400' in (items player) || '20ABCT_Item_COAX_400' in (itemCargo (vehicle player))";
+					statement="['20ABCT_Item_COAX_400', '20ABCT_400Rnd_762x51_Red', 'Loading 400 rds'] execVM '\z\20abct\addons\warriors\scripts\loadL94.sqf'";
 					exceptions[]={};
 					priority=3;
 				};
-				class CoaxLoad1
+			};
+			class UnloadL94
+			{
+				displayName="Unload COAX";
+				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_400Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) > 0";
+				exceptions[]=
 				{
-					displayName="Reload COAX (600 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && '20ABCT_COAX1_mag' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_600Rnd_762x51_Red'; vehicle player addMagazineCargoGlobal ['20ABCT_COAX1_mag', -1]";
-					exceptions[]={};
-					priority=3;
+					"isNotSitting"
 				};
-				class CoaxLoad2
+				class UnloadL94
 				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad3
-				{
-					displayName="Reload COAX (100 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_100Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX2_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_100Rnd_T', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad4
-				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad5
-				{
-					displayName="Reload COAX (200 rds GPMG)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_200Rnd_T' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX3_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_200Rnd_T', -1]";
-					exceptions[]={};
-					priority=3;
-				};
-				class CoaxLoad6
-				{
-					displayName="Reload COAX (800 rds)";
-					condition="(count magazines vehicle player <=2 && player == vehicle player turretUnit [0,0] && 'UK3CB_BAF_762_800Rnd' in (getMagazineCargo vehicle player select 0))";
-					icon="";
-					statement="vehicle _player addMagazineGlobal '20ABCT_COAX4_mag'; vehicle player addMagazineCargoGlobal ['UK3CB_BAF_762_800Rnd', -1]";
+					displayName="Unload 400 rds";
+					condition="'20ABCT_400Rnd_762x51_Red' in ((vehicle player) magazinesTurret [0])";
+					statement="['20ABCT_400Rnd_762x51_Red', '20ABCT_Item_COAX_400', 'Unloading 400 rds'] execVM '\z\20abct\addons\warriors\scripts\unloadL94.sqf'";
 					exceptions[]={};
 					priority=3;
 				};
@@ -1123,7 +1172,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="";
 				class 20ABCT_ACE_Set_Texture_Woodland
 				{
 					scope=2;
@@ -1138,7 +1187,7 @@ class CfgVehicles
 						scope=2;
 						displayName="Default";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\apc_tracked_03_ext_w_co.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\apc_tracked_03_ext2_w_co.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1148,7 +1197,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11A";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11A_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11A_BodyTextureWdl""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11A_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11A_BodyTextureWdl""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1158,7 +1207,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11I";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11I_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11I_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_greenbeige_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11I_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11I_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_greenbeige_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1168,7 +1217,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11J";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11J_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11J_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11J_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11J_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1178,7 +1227,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11K";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11K_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11K_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11K_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11K_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1188,7 +1237,7 @@ class CfgVehicles
 						scope=2;
 						displayName="20A";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\20A_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\20A_BodyTextureWdl""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\20A_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\20A_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1198,7 +1247,7 @@ class CfgVehicles
 						scope=2;
 						displayName="21C";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\21C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\21C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_greenbeige_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\21C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\21C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_greenbeige_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1208,7 +1257,7 @@ class CfgVehicles
 						scope=2;
 						displayName="22C";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\22C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\22C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\22C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\22C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1218,7 +1267,7 @@ class CfgVehicles
 						scope=2;
 						displayName="23C";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\23C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\23C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\23C_TurretTextureWdl.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\23C_BodyTextureWdl.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_olive_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1238,7 +1287,7 @@ class CfgVehicles
 						scope=2;
 						displayName="Default";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\apc_tracked_03_ext_d_co.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\apc_tracked_03_ext2_d_co.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\apc_tracked_03_ext_d_co.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\apc_tracked_03_ext2_d_co.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1248,7 +1297,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11A";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11A_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11A_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11A_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11A_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1258,7 +1307,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11I";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11I_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11I_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11I_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11I_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1268,7 +1317,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11J";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11J_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11J_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11J_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11J_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1278,7 +1327,7 @@ class CfgVehicles
 						scope=2;
 						displayName="11K";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\11K_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\11K_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\11K_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\11K_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1288,7 +1337,7 @@ class CfgVehicles
 						scope=2;
 						displayName="20A";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\20A_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\20A_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\20A_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\20A_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_NATO_Desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1298,7 +1347,7 @@ class CfgVehicles
 						scope=2;
 						displayName="21C";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\21C_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\21C_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\21C_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\21C_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1308,7 +1357,7 @@ class CfgVehicles
 						scope=2;
 						displayName="22C";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\22C_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\22C_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\22C_TurretTextureDes.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\22C_BodyTextureDes.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa""];vehicle player setObjectTextureGlobal [3,""A3\Armor_F\Data\cage_csat_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1328,7 +1377,7 @@ class CfgVehicles
 						scope=2;
 						displayName="Default";
 						condition="_player == commander _target";
-						statement="vehicle player setObjectTextureGlobal [0,""\20ABCT\data\UN_0.paa""];vehicle player setObjectTextureGlobal [1,""\20ABCT\data\UN_1.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""\20ABCT\data\cage_white_CO.paa""];";
+						statement="vehicle player setObjectTextureGlobal [0,""z\20abct\addons\warriors\data\UN_0.paa""];vehicle player setObjectTextureGlobal [1,""z\20abct\addons\warriors\data\UN_1.paa""];vehicle player setObjectTextureGlobal [2,""A3\Armor_F\Data\camonet_green_CO.paa""];vehicle player setObjectTextureGlobal [3,""z\20abct\addons\warriors\data\cage_white_CO.paa""];";
 						showDisabled=0;
 						priority=1;
 						icon="";
@@ -1343,7 +1392,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -1422,8 +1471,8 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa"
 		};
@@ -1586,6 +1635,7 @@ class CfgVehicles
 	};
 	class 20ABCT_fv510_test: 20ABCT_fv510_warrior_dep
 	{
+		displayName="FV510 Warrior (Test)";
 		class ACE_SelfActions
 		 {
 			class ACE_ifa3reload_loadTurretAmmo {
@@ -1790,17 +1840,11 @@ class CfgVehicles
 				};
 				magazines[]=
 				{
-					"20ABCT_400Rnd_762x51_Red"
 				};
 			};
 		};
 		class TransportMagazines
 		{
-			class _xx_20ABCT_COAX_mag
-			{
-				magazine="20ABCT_COAX_mag";
-				count=7;
-			};
 			class _xx_SmokeShellGreen
 			{
 				magazine="SmokeShellGreen";
@@ -1829,6 +1873,11 @@ class CfgVehicles
 		};
 		class TransportItems
 		{
+			class _xx_20ABCT_Item_COAX_400
+        {
+            name="20ABCT_Item_COAX_400";
+            count=8;
+        };
 			class _xx_GME_556AmmoBox
 			{
 				Name="GME_556AmmoBox";
@@ -1923,7 +1972,7 @@ class CfgVehicles
 		side=1;
 		faction="20ABCT";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\warriors\data\UI\Garage_Icon.paa";
 		simulation="tankX";
 		driveOnComponent[]=
 		{
@@ -2014,8 +2063,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-					"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext_w_co.paa",
+					"z\20abct\addons\warriors\data\apc_tracked_03_ext2_w_co.paa",
 					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -2030,74 +2079,10 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\apc_tracked_03_ext_d_co.paa",
-					"\20ABCT\data\apc_tracked_03_ext2_d_co.paa",
+					"\warriors\data\apc_tracked_03_ext_d_co.paa",
+					"\warriors\data\apc_tracked_03_ext2_d_co.paa",
 					"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
-				};
-				factions[]=
-				{
-					"20ABCT"
-				};
-			};
-			class 10A_Woodland
-			{
-				displayName="10A Woodland";
-				author="20th ABCT";
-				textures[]=
-				{
-					"\20ABCT\data\10A_TurretTextureWdl.paa",
-					"\20ABCT\data\10A_BodyTextureWdl.paa",
-					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
-					"A3\Armor_F\Data\cage_olive_CO.paa"
-				};
-				factions[]=
-				{
-					"20ABCT"
-				};
-			};
-			class 11C_Woodland
-			{
-				displayName="11C Woodland";
-				author="20th ABCT";
-				textures[]=
-				{
-					"\20ABCT\data\11C_TurretTextureWdl.paa",
-					"\20ABCT\data\11C_BodyTextureWdl.paa",
-					"A3\Armor_F\Data\camonet_greenbeige_co.paa",
-					"A3\Armor_F\Data\cage_olive_CO.paa"
-				};
-				factions[]=
-				{
-					"20ABCT"
-				};
-			};
-			class 12C_Woodland
-			{
-				displayName="12C Woodland";
-				author="20th ABCT";
-				textures[]=
-				{
-					"\20ABCT\data\12C_TurretTextureWdl.paa",
-					"\20ABCT\data\12C_BodyTextureWdl.paa",
-					"A3\Armor_F\Data\camonet_green_CO.paa",
-					"A3\Armor_F\Data\cage_olive_CO.paa"
-				};
-				factions[]=
-				{
-					"20ABCT"
-				};
-			};
-			class 13C_Woodland
-			{
-				displayName="13C Woodland";
-				author="20th ABCT";
-				textures[]=
-				{
-					"\20ABCT\data\13C_TurretTextureWdl.paa",
-					"\20ABCT\data\13C_BodyTextureWdl.paa",
-					"A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa",
-					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
 				factions[]=
 				{
@@ -2110,8 +2095,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\20A_TurretTextureWdl.paa",
-					"\20ABCT\data\20A_BodyTextureWdl.paa",
+					"\warriors\data\20A_TurretTextureWdl.paa",
+					"\warriors\data\20A_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -2126,8 +2111,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\21C_TurretTextureWdl.paa",
-					"\20ABCT\data\21C_BodyTextureWdl.paa",
+					"\warriors\data\21C_TurretTextureWdl.paa",
+					"\warriors\data\21C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_greenbeige_co.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -2142,8 +2127,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\22C_TurretTextureWdl.paa",
-					"\20ABCT\data\22C_BodyTextureWdl.paa",
+					"\warriors\data\22C_TurretTextureWdl.paa",
+					"\warriors\data\22C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -2158,8 +2143,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\23C_TurretTextureWdl.paa",
-					"\20ABCT\data\23C_BodyTextureWdl.paa",
+					"\warriors\data\23C_TurretTextureWdl.paa",
+					"\warriors\data\23C_BodyTextureWdl.paa",
 					"A3\Armor_F\Data\camonet_AAF_stripe_green_CO.paa",
 					"A3\Armor_F\Data\cage_olive_CO.paa"
 				};
@@ -2174,8 +2159,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\10A_TurretTextureDes.paa",
-					"\20ABCT\data\10A_BodyTextureDes.paa",
+					"\warriors\data\10A_TurretTextureDes.paa",
+					"\warriors\data\10A_BodyTextureDes.paa",
 					"\A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"\A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -2190,8 +2175,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\11C_TurretTextureDes.paa",
-					"\20ABCT\data\11C_BodyTextureDes.paa",
+					"\warriors\data\11C_TurretTextureDes.paa",
+					"\warriors\data\11C_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_AAF_FIA_desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -2206,8 +2191,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\12C_TurretTextureDes.paa",
-					"\20ABCT\data\12C_BodyTextureDes.paa",
+					"\warriors\data\12C_TurretTextureDes.paa",
+					"\warriors\data\12C_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_AAF_stripe_desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -2222,8 +2207,8 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\13C_TurretTextureDes.paa",
-					"\20ABCT\data\13C_BodyTextureDes.paa",
+					"\warriors\data\13C_TurretTextureDes.paa",
+					"\warriors\data\13C_BodyTextureDes.paa",
 					"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 					"A3\Armor_F\Data\cage_csat_CO.paa"
 				};
@@ -2238,10 +2223,10 @@ class CfgVehicles
 				author="20th ABCT";
 				textures[]=
 				{
-					"\20ABCT\data\UN_0.paa",
-					"\20ABCT\data\UN_1.paa",
+					"\warriors\data\UN_0.paa",
+					"\warriors\data\UN_1.paa",
 					"A3\Armor_F\Data\camonet_green_CO.paa",
-					"\20ABCT\data\cage_white_CO.paa"
+					"\warriors\data\cage_white_CO.paa"
 				};
 				factions[]=
 				{
@@ -2254,22 +2239,6 @@ class CfgVehicles
 			"Woodland",
 			1,
 			"Desert",
-			0,
-			"10A_Woodland",
-			0,
-			"10A_Desert",
-			0,
-			"11C_Woodland",
-			0,
-			"12C_Woodland",
-			0,
-			"13C_Woodland",
-			0,
-			"11C_Desert",
-			0,
-			"12C_Desert",
-			0,
-			"13C_Desert",
 			0,
 			"20A_Woodland",
 			0,
@@ -2788,56 +2757,56 @@ class CfgVehicles
 		scopeCurator=2;
 		faction="20ABCT";
 		editorSubcategory="20ABCT_Bots";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\warriors\data\UI\Garage_Icon.paa";
 		hiddenSelectionsTextures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext_d_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_d_co.paa",
+			"\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext2_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext_d_co.paa",
+			"\warriors\data\apc_tracked_03_ext2_d_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa",
 			"A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
 			"A3\Armor_F\Data\cage_csat_CO.paa",
-			"\20ABCT\data\10A_TurretTextureWdl.paa",
-			"\20ABCT\data\11C_TurretTextureWdl.paa",
-			"\20ABCT\data\12C_TurretTextureWdl.paa",
-			"\20ABCT\data\13C_TurretTextureWdl.paa",
-			"\20ABCT\data\20A_TurretTextureWdl.paa",
-			"\20ABCT\data\21C_TurretTextureWdl.paa",
-			"\20ABCT\data\22C_TurretTextureWdl.paa",
-			"\20ABCT\data\23C_TurretTextureWdl.paa",
-			"\20ABCT\data\10A_TurretTextureDes.paa",
-			"\20ABCT\data\11C_TurretTextureDes.paa",
-			"\20ABCT\data\12C_TurretTextureDes.paa",
-			"\20ABCT\data\13C_TurretTextureDes.paa",
-			"\20ABCT\data\20A_TurretTextureDes.paa",
-			"\20ABCT\data\21C_TurretTextureDes.paa",
-			"\20ABCT\data\22C_TurretTextureDes.paa",
-			"\20ABCT\data\23C_TurretTextureDes.paa",
-			"\20ABCT\data\10A_BodyTextureWdl.paa",
-			"\20ABCT\data\11C_BodyTextureWdl.paa",
-			"\20ABCT\data\12C_BodyTextureWdl.paa",
-			"\20ABCT\data\13C_BodyTextureWdl.paa",
-			"\20ABCT\data\20A_BodyTextureWdl.paa",
-			"\20ABCT\data\21C_BodyTextureWdl.paa",
-			"\20ABCT\data\22C_BodyTextureWdl.paa",
-			"\20ABCT\data\23C_BodyTextureWdl.paa",
-			"\20ABCT\data\10A_BodyTextureDes.paa",
-			"\20ABCT\data\11C_BodyTextureDes.paa",
-			"\20ABCT\data\12C_BodyTextureDes.paa",
-			"\20ABCT\data\13C_BodyTextureDes.paa",
-			"\20ABCT\data\20A_BodyTextureDes.paa",
-			"\20ABCT\data\21C_BodyTextureDes.paa",
-			"\20ABCT\data\22C_BodyTextureDes.paa",
-			"\20ABCT\data\23C_BodyTextureDes.paa",
-			"\20ABCT\data\UN_0",
-			"\20ABCT\data\UN_1"
+			"\warriors\data\10A_TurretTextureWdl.paa",
+			"\warriors\data\11C_TurretTextureWdl.paa",
+			"\warriors\data\12C_TurretTextureWdl.paa",
+			"\warriors\data\13C_TurretTextureWdl.paa",
+			"\warriors\data\20A_TurretTextureWdl.paa",
+			"\warriors\data\21C_TurretTextureWdl.paa",
+			"\warriors\data\22C_TurretTextureWdl.paa",
+			"\warriors\data\23C_TurretTextureWdl.paa",
+			"\warriors\data\10A_TurretTextureDes.paa",
+			"\warriors\data\11C_TurretTextureDes.paa",
+			"\warriors\data\12C_TurretTextureDes.paa",
+			"\warriors\data\13C_TurretTextureDes.paa",
+			"\warriors\data\20A_TurretTextureDes.paa",
+			"\warriors\data\21C_TurretTextureDes.paa",
+			"\warriors\data\22C_TurretTextureDes.paa",
+			"\warriors\data\23C_TurretTextureDes.paa",
+			"\warriors\data\10A_BodyTextureWdl.paa",
+			"\warriors\data\11C_BodyTextureWdl.paa",
+			"\warriors\data\12C_BodyTextureWdl.paa",
+			"\warriors\data\13C_BodyTextureWdl.paa",
+			"\warriors\data\20A_BodyTextureWdl.paa",
+			"\warriors\data\21C_BodyTextureWdl.paa",
+			"\warriors\data\22C_BodyTextureWdl.paa",
+			"\warriors\data\23C_BodyTextureWdl.paa",
+			"\warriors\data\10A_BodyTextureDes.paa",
+			"\warriors\data\11C_BodyTextureDes.paa",
+			"\warriors\data\12C_BodyTextureDes.paa",
+			"\warriors\data\13C_BodyTextureDes.paa",
+			"\warriors\data\20A_BodyTextureDes.paa",
+			"\warriors\data\21C_BodyTextureDes.paa",
+			"\warriors\data\22C_BodyTextureDes.paa",
+			"\warriors\data\23C_BodyTextureDes.paa",
+			"\warriors\data\UN_0",
+			"\warriors\data\UN_1"
 		};
 		textures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext2_w_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa"
 		};
@@ -2851,7 +2820,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\20abct\addons\warriors\data\fist_ca.paa";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -2930,8 +2899,8 @@ class CfgVehicles
 		};
 		hiddenSelectionsTextures[]=
 		{
-			"\20ABCT\data\apc_tracked_03_ext_w_co.paa",
-			"\20ABCT\data\apc_tracked_03_ext2_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext_w_co.paa",
+			"\warriors\data\apc_tracked_03_ext2_w_co.paa",
 			"A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
 			"A3\Armor_F\Data\cage_olive_CO.paa"
 		};
