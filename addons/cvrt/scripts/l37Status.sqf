@@ -16,7 +16,7 @@ private _lines = [];
 hint parseText format [
     "<t size='1.1' font='PuristaBold'>COAX</t><br/><br/><t font='PuristaMedium'>FEED TRAY (%1/1):</t><br/>%2<br/><br/><t font='PuristaMedium'>AVAILABLE:</t><br/>  600 rd belts: %3",
     _loadedCount,
-    if (count _lines == 0) then { "  Empty" } else { _lines joinString "<br/>" },
+    if (_lines isEqualTo []) then { "  Empty" } else { _lines joinString "<br/>" },
     _avail600
 ];
 

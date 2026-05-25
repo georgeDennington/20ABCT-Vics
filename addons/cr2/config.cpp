@@ -61,11 +61,14 @@ class Optics_Gunner_MBT_03: Optics_Armored
 };
 
 // L30A1 weapon override to use single-round magazines
+class cannon_120mm;
+class CannonCore;
 class qav_challenger_L30A1;
 class CfgWeapons
 {
     class 20ABCT_L30A1: qav_challenger_L30A1
     {
+        displayName="L30A1 120mm Cannon";
         magazineReloadTime=0.1;
         magazines[]=
         {
@@ -73,6 +76,7 @@ class CfgWeapons
             "20ABCT_1Rnd_120mm_HESHT",
             "20ABCT_1Rnd_120mm_Smoke"
         };
+        modes[] = {"player","close","short","medium","far"};
     };
 };
 

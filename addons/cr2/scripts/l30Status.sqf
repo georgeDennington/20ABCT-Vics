@@ -24,7 +24,7 @@ private _lines = [];
 hint parseText format [
     "<t size='1.1' font='PuristaBold'>L30A1 120mm</t><br/><br/><t font='PuristaMedium'>BREECH (%1/1):</t><br/>%2<br/><br/><t font='PuristaMedium'>AVAILABLE:</t><br/>  FIN: %3<br/>  HESH: %4<br/>  SMOKE: %5",
     _loadedCount,
-    if (count _lines == 0) then { "  Empty" } else { _lines joinString "<br/>" },
+    if (_lines isEqualTo []) then { "  Empty" } else { _lines joinString "<br/>" },
     _availAPFSDS,
     _availHESHT,
     _availSmoke

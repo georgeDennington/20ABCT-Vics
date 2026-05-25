@@ -10,6 +10,7 @@ class CfgPatches
             "20ABCT_APDS_box",
             "20ABCT_HEIT_box",
             "20ABCT_WR_box",
+            "20ABCT_CR2_box",
             "20ABCT_CVRT_box",
             "20ABCT_SECT_box",
             "20ABCT_PL_box",

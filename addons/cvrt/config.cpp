@@ -205,7 +205,7 @@ class CfgVehicles
 		faction="20ABCT";
 		editorSubcategory="20ABCT_AFV";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\cvrt\data\UI\Garage_Icon.paa";
 		simulation="tankX";
 		driveOnComponent[]=
 		{
@@ -620,7 +620,7 @@ class CfgVehicles
 		{
 			class RARDENStatus
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="RARDEN Status";
 				condition="player == (vehicle player) turretUnit [0,0]";
 				exceptions[]=
@@ -634,19 +634,18 @@ class CfgVehicles
 			};
 			class LoadRARDEN
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="Load RARDEN";
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class APDSLoad
 				{
 					displayName="Load SABOT";
 					condition="'20ABCT_Item_30mm_APDST' in (magazineCargo (vehicle player))";
-					icon="\weapons\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_Item_30mm_APDST', '20ABCT_APDS_mag', 'Loading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=3;
@@ -655,7 +654,7 @@ class CfgVehicles
 				{
 					displayName="Load SHELL";
 					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_Item_30mm_HEIT', '20ABCT_HEIT_mag', 'Loading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -663,19 +662,18 @@ class CfgVehicles
 			};
 			class UnloadRARDEN
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="Unload RARDEN";
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) > 0";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class Unload_Mag1_APDS
 				{
 					displayName="Mag 1: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_APDS_mag', '20ABCT_Item_30mm_APDS', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -684,7 +682,7 @@ class CfgVehicles
 				{
 					displayName="Mag 1: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_HEIT_mag', '20ABCT_Item_30mm_HEIT', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -693,7 +691,7 @@ class CfgVehicles
 				{
 					displayName="Mag 2: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_APDS_mag', '20ABCT_Item_30mm_APDS', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
@@ -702,7 +700,7 @@ class CfgVehicles
 				{
 					displayName="Mag 2: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_HEIT_mag', '20ABCT_Item_30mm_HEIT', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
@@ -727,7 +725,6 @@ class CfgVehicles
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_600Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) < 1";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class Load600
@@ -745,7 +742,6 @@ class CfgVehicles
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_600Rnd_762x51_Red']} count ((vehicle player) magazinesTurret [0])) > 0";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class UnloadL37
@@ -765,7 +761,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -795,7 +791,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_Set_Texture_61A
 				{
 					scope=2;
@@ -960,7 +956,7 @@ class CfgVehicles
 		faction="20ABCT";
 		editorSubcategory="20ABCT_AFV";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\cvrt\data\UI\Garage_Icon.paa";
 		simulation="tankX";
 		driveOnComponent[]=
 		{
@@ -1375,12 +1371,11 @@ class CfgVehicles
 		{
 			class RARDENStatus
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="RARDEN Status";
 				condition="player == (vehicle player) turretUnit [0,0]";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				statement="execVM '\z\20abct\addons\cvrt\scripts\rardenStatus.sqf'";
@@ -1389,19 +1384,18 @@ class CfgVehicles
 			};
 			class LoadRARDEN
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="Load RARDEN";
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) < 2";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class APDSLoad
 				{
 					displayName="Load SABOT";
 					condition="'20ABCT_APDS_mag' in (magazineCargo (vehicle player))";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_APDS_mag', 'Loading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=3;
@@ -1410,7 +1404,7 @@ class CfgVehicles
 				{
 					displayName="Load SHELL";
 					condition="'20ABCT_HEIT_mag' in (magazineCargo (vehicle player))";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_HEIT_mag', 'Loading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\loadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -1418,19 +1412,18 @@ class CfgVehicles
 			};
 			class UnloadRARDEN
 			{
-				icon="\20ABCT\data\UI\RARDEN.paa";
+				icon="\cvrt\data\UI\RARDEN.paa";
 				displayName="Unload RARDEN";
 				condition="player == (vehicle player) turretUnit [0,0] && ({_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']} count ((vehicle player) magazinesTurret [0])) > 0";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class Unload_Mag1_APDS
 				{
 					displayName="Mag 1: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_APDS_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -1439,7 +1432,7 @@ class CfgVehicles
 				{
 					displayName="Mag 1: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 1 && {(_rm select 0) == '20ABCT_HEIT_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=2;
@@ -1448,7 +1441,7 @@ class CfgVehicles
 				{
 					displayName="Mag 2: SABOT";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_APDS_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_APDS_mag', 'Unloading SABOT'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
@@ -1457,7 +1450,7 @@ class CfgVehicles
 				{
 					displayName="Mag 2: SHELL";
 					condition="call {private _rm = ((vehicle player) magazinesTurret [0]) select {_x in ['20ABCT_APDS_mag','20ABCT_HEIT_mag']}; count _rm >= 2 && {(_rm select 1) == '20ABCT_HEIT_mag'}}";
-					icon="\20ABCT\data\UI\RARDEN.paa";
+					icon="\cvrt\data\UI\RARDEN.paa";
 					statement="['20ABCT_HEIT_mag', 'Unloading SHELL'] execVM '\z\20abct\addons\cvrt\scripts\unloadRarden.sqf'";
 					exceptions[]={};
 					priority=1;
@@ -1465,19 +1458,18 @@ class CfgVehicles
 			};
 			class LoadCOAX
 			{
-				icon="\20ABCT\data\UI\COAX.paa";
+				icon="\cvrt\data\UI\COAX.paa";
 				displayName="Load COAX";
 				condition="player == (vehicle player) turretUnit [0,0]";
 				exceptions[]=
 				{
-					"isNotInside",
 					"isNotSitting"
 				};
 				class CoaxLoad
 				{
 					displayName="COAX Belt (400 rds)";
 					condition="'20ABCT_Item_COAX_400' in (items player) || '20ABCT_Item_COAX_400' in ((getItemCargo (vehicle player)) select 0)";
-					icon="\20ABCT\data\UI\COAX.paa";
+					icon="\cvrt\data\UI\COAX.paa";
 					statement="if ('20ABCT_Item_COAX_400' in items player) then {player removeItem '20ABCT_Item_COAX_400'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_400',-1]}; (vehicle player) addMagazineTurret ['20ABCT_400Rnd_762x51_Red',[0]]";
 					exceptions[]={};
 					priority=1;
@@ -1486,7 +1478,7 @@ class CfgVehicles
 				{
 					displayName="COAX Belt (600 rds)";
 					condition="'20ABCT_Item_COAX_600' in (items player) || '20ABCT_Item_COAX_600' in ((getItemCargo (vehicle player)) select 0)";
-					icon="\20ABCT\data\UI\COAX.paa";
+					icon="\cvrt\data\UI\COAX.paa";
 					statement="if ('20ABCT_Item_COAX_600' in items player) then {player removeItem '20ABCT_Item_COAX_600'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_600',-1]}; (vehicle player) addMagazineTurret ['20ABCT_600Rnd_762x51_Red',[0]]";
 					exceptions[]={};
 					priority=1;
@@ -1495,7 +1487,7 @@ class CfgVehicles
 				{
 					displayName="GPMG Belt (100 rds)";
 					condition="'20ABCT_Item_GPMG_100' in (items player) || '20ABCT_Item_GPMG_100' in ((getItemCargo (vehicle player)) select 0)";
-					icon="\20ABCT\data\UI\COAX.paa";
+					icon="\cvrt\data\UI\COAX.paa";
 					statement="if ('20ABCT_Item_GPMG_100' in items player) then {player removeItem '20ABCT_Item_GPMG_100'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_100',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX2_mag',[0]]";
 					exceptions[]={};
 					priority=1;
@@ -1504,7 +1496,7 @@ class CfgVehicles
 				{
 					displayName="GPMG Belt (200 rds)";
 					condition="'20ABCT_Item_GPMG_200' in (items player) || '20ABCT_Item_GPMG_200' in ((getItemCargo (vehicle player)) select 0)";
-					icon="\20ABCT\data\UI\COAX.paa";
+					icon="\cvrt\data\UI\COAX.paa";
 					statement="if ('20ABCT_Item_GPMG_200' in items player) then {player removeItem '20ABCT_Item_GPMG_200'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_GPMG_200',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX3_mag',[0]]";
 					exceptions[]={};
 					priority=1;
@@ -1513,7 +1505,7 @@ class CfgVehicles
 				{
 					displayName="COAX Belt (800 rds)";
 					condition="'20ABCT_Item_COAX_800' in (items player) || '20ABCT_Item_COAX_800' in ((getItemCargo (vehicle player)) select 0)";
-					icon="\20ABCT\data\UI\COAX.paa";
+					icon="\cvrt\data\UI\COAX.paa";
 					statement="if ('20ABCT_Item_COAX_800' in items player) then {player removeItem '20ABCT_Item_COAX_800'} else {(vehicle player) addItemCargoGlobal ['20ABCT_Item_COAX_800',-1]}; (vehicle player) addMagazineTurret ['20ABCT_COAX4_mag',[0]]";
 					exceptions[]={};
 					priority=1;
@@ -1527,7 +1519,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\UI\fist_ca.paa";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -1557,7 +1549,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\core\data\fist_ca.paa";
 				class 20ABCT_ACE_Set_Texture_61A
 				{
 					scope=2;
@@ -1791,7 +1783,7 @@ class CfgVehicles
 		faction="20ABCT";
 		editorSubcategory="20ABCT_Bots";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\cvrt\data\UI\Garage_Icon.paa";
 		simulation="tankX";
 		class AnimationSources: AnimationSources
 		{
@@ -2328,7 +2320,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -2358,7 +2350,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_Set_Texture_61A
 				{
 					scope=2;
@@ -2412,7 +2404,7 @@ class CfgVehicles
 		faction="20ABCT";
 		editorSubcategory="20ABCT_Bots";
 		crew="20ABCT_AFV_Crew";
-		picture="\20ABCT\data\UI\Garage_Icon.paa";
+		picture="\cvrt\data\UI\Garage_Icon.paa";
 		simulation="tankX";
 		class AnimationSources: AnimationSources
 		{
@@ -2961,7 +2953,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_RaiseFlag
 				{
 					scope=2;
@@ -2991,7 +2983,7 @@ class CfgVehicles
 				statement="";
 				showDisabled=0;
 				priority=5;
-				icon="\20ABCT\data\fist_ca.paa";
+				icon="\cvrt\data\fist_ca.paa";
 				class 20ABCT_ACE_Set_Texture_61A
 				{
 					scope=2;

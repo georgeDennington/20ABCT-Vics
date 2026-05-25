@@ -20,7 +20,7 @@ private _lines = [];
 hint parseText format [
     "<t size='1.1' font='PuristaBold'>RARDEN L21A2</t><br/><br/><t font='PuristaMedium'>LOADED (%1/2):</t><br/>%2<br/><br/><t font='PuristaMedium'>AVAILABLE:</t><br/>  SABOT clips: %3<br/>  SHELL clips: %4",
     _loadedAPDS + _loadedHEIT,
-    if (count _lines == 0) then { "  Empty" } else { _lines joinString "<br/>" },
+    if (_lines isEqualTo []) then { "  Empty" } else { _lines joinString "<br/>" },
     _availAPDS,
     _availHEIT
 ];
