@@ -10,7 +10,7 @@ class CfgPatches
             "20ABCT_30mm_L21A2",
             "20ABCT_762_L94A1",
             "20ABCT_762_L94A1_CR2",
-            "20ABCT_762_L37A2",
+            "20ABCT_762_L37A1",
             "20ABCT_UK3CB_BAF_L85A3_Grippod_T_UK3CB_BAF_LLM_IR_TanRKSL_optic_LDS_PiPUK3CB_underbarrel_acc_grippod_t",
             "20ABCT_UK3CB_BAF_L85A3_UK3CB_BAF_LLM_Flashlight_TanRKSL_optic_LDSUK3CB_underbarrel_acc_grippod_t",
             "20ABCT_UK3CB_BAF_L85A3_UK3CB_BAF_LLM_Flashlight_TanRKSL_optic_LDSUK3CB_underbarrel_acc_afg_d",
