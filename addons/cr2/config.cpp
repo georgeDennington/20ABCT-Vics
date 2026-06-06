@@ -10,7 +10,7 @@ class CfgPatches
         weapons[]=
         {
             "20ABCT_L30A1",
-            "20ABCT_762_L94A1"
+            "20ABCT_762_L94A1_CR2"
         };
         requiredVersion=0.50;
         requiredAddons[]=
